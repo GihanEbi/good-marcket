@@ -53,7 +53,7 @@ export default function BlogHeader() {
             </Link>
             <Link
               className="text-text-main dark:text-white/80 text-sm font-medium hover:text-primary transition-colors"
-              href="#"
+              href="/learning/auth/signin"
             >
               Learning
             </Link>
