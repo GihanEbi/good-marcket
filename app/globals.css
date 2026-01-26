@@ -1,26 +1,49 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography"; /* Load the typography plugin */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #13ec5b;
+
+  --color-background-light: #f6f8f6;
+  --color-background-dark: #102216;
+
+  --color-border-light: #e7f3eb;
+  --color-border-dark: #1a2e21;
+
+  --color-text-main: #0d1b12;
+  --color-text-green: #4c9a66;
+  --color-text-green-light: #a0c4ab;
+
+  --font-display: "Manrope", sans-serif;
+  --font-serif: "Fraunces", serif; /* Added Serif Font */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-background-light text-text-main transition-colors duration-300;
+  }
+
+  :root.dark body {
+    @apply bg-background-dark text-[#f6f8f6];
+  }
 }
