@@ -7,70 +7,75 @@ import { useRouter } from "next/navigation";
 export default function CourseCreationPage() {
   const router = useRouter();
   return (
-    <div className="min-h-screen bg-[#f6f6f8] dark:bg-[#121121] font-sans text-slate-900 dark:text-slate-100">
-      {/* --- Sticky Header --- */}
-      <header className="sticky top-0 z-50 bg-white/80 dark:bg-[#1a192e]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between py-4 gap-4">
-            {/* Title & Back */}
-            <div className="flex items-center gap-3">
+    <div className="min-h-screen bg-[#fcfdfc] dark:bg-[#0a0f0b] font-sans text-[#15291b] dark:text-slate-50 transition-colors duration-300">
+      {/* --- Architect Terminal Header --- */}
+      <header className="sticky top-0 z-50 bg-white/80 dark:bg-[#0a0f0b]/80 backdrop-blur-xl border-b border-[#e7f3eb] dark:border-[#1e3a27]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between py-6 gap-6">
+            {/* Title & Back Link */}
+            <div className="flex items-center gap-5">
               <Link
-                href="/users/instructor/portal/courses/create-course/basic-info"
-                className="size-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors"
+                href="/users/instructor/portal/courses"
+                className="size-10 flex items-center justify-center rounded-xl bg-[#f0f7f2] dark:bg-[#15291b] text-[#5c7a67] hover:text-[#13ec5b] border border-[#e7f3eb] dark:border-[#1e3a27] transition-all"
               >
-                <span className="material-symbols-outlined">arrow_back</span>
+                <span className="material-symbols-outlined font-black">
+                  arrow_back
+                </span>
               </Link>
               <div>
-                <h2 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white leading-tight">
-                  Create New Course
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="size-1.5 rounded-full bg-[#13ec5b] animate-pulse"></div>
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-[#5c7a67]">
+                    Module Initialization
+                  </span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-black text-[#15291b] dark:text-white leading-tight uppercase tracking-tight">
+                  Construct New <span className="text-[#13ec5b]">Node</span>
                 </h2>
-                <p className="text-xs text-slate-500 font-medium">
-                  Step 1 of 4: Course Details
-                </p>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <button className="flex-1 sm:flex-none px-4 md:px-6 py-2.5 text-slate-600 dark:text-slate-400 font-bold text-sm rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                Save Draft
+            {/* Action Hub */}
+            <div className="flex items-center gap-3">
+              <button className="flex-1 md:flex-none px-6 py-3 text-[10px] font-black uppercase tracking-widest text-[#5c7a67] dark:text-[#a0c4ab] rounded-2xl hover:bg-[#f0f7f2] dark:hover:bg-[#15291b] transition-all">
+                Stage Draft
               </button>
               <button
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 md:px-8 py-2.5 bg-[#5048e5] text-white rounded-xl text-sm font-bold shadow-lg shadow-[#5048e5]/25 hover:bg-[#5048e5]/90 transition-all active:scale-95"
+                className="flex-1 md:flex-none flex items-center justify-center gap-3 px-8 py-3 bg-[#13ec5b] text-[#15291b] rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-[#13ec5b]/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
                 onClick={() => {
                   router.push(
-                    "/users/instructor/portal/courses/create-course/curriculum",
+                    "/learning/users/instructor/portal/courses/create-course/curriculum",
                   );
                 }}
               >
-                Save & Next
-                <span className="material-symbols-outlined text-lg">
+                Sync & Next
+                <span className="material-symbols-outlined text-base font-black">
                   arrow_forward
                 </span>
               </button>
             </div>
           </div>
 
-          {/* Stepper Progress */}
-          <div className="flex items-center justify-between pb-4 max-w-2xl mx-auto">
+          {/* Technical Stepper */}
+          <div className="flex items-center justify-between pb-6 max-w-2xl mx-auto">
             {[
-              { label: "Details", active: true },
+              { label: "Schema", active: true },
               { label: "Curriculum", active: false },
               { label: "Pricing", active: false },
-              { label: "Review", active: false },
+              { label: "Validation", active: false },
             ].map((step, idx) => (
               <React.Fragment key={step.label}>
-                <div className="flex flex-col items-center gap-1.5 flex-1">
+                <div className="flex flex-col items-center gap-2 flex-1">
                   <div
-                    className={`h-1.5 w-full rounded-full transition-colors ${
+                    className={`h-1 w-full rounded-full transition-all duration-700 ${
                       step.active
-                        ? "bg-[#5048e5]"
-                        : "bg-slate-200 dark:bg-slate-800"
+                        ? "bg-[#13ec5b] shadow-[0_0_8px_#13ec5b]"
+                        : "bg-[#e7f3eb] dark:bg-[#1e3a27]"
                     }`}
                   ></div>
                   <span
-                    className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${
-                      step.active ? "text-[#5048e5]" : "text-slate-400"
+                    className={`text-[9px] font-black uppercase tracking-[0.2em] ${
+                      step.active ? "text-[#13ec5b]" : "text-[#5c7a67]"
                     }`}
                   >
                     {step.label}
@@ -85,60 +90,64 @@ export default function CourseCreationPage() {
         </div>
       </header>
 
-      {/* --- Main Content --- */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
-        <div className="grid grid-cols-12 gap-6 md:gap-8">
-          {/* Form Column */}
-          <div className="col-span-12 lg:col-span-8 space-y-6 md:space-y-8">
-            {/* 1. Basic Info */}
-            <section className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-5 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-6 md:mb-8">
-                <div className="size-10 rounded-lg bg-indigo-50 dark:bg-[#5048e5]/10 flex items-center justify-center text-[#5048e5]">
-                  <span className="material-symbols-outlined">info</span>
+      {/* --- Main Construction Area --- */}
+      <main className="max-w-6xl mx-auto px-6 py-10 md:py-16">
+        <div className="grid grid-cols-12 gap-10">
+          {/* Left Column: Documentation Input */}
+          <div className="col-span-12 lg:col-span-8 space-y-10">
+            {/* 1. Basic Metadata */}
+            <section className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 md:p-10 shadow-sm">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="size-12 rounded-2xl bg-[#13ec5b]/10 dark:bg-[#13ec5b]/5 flex items-center justify-center text-[#13ec5b] border border-[#13ec5b]/20">
+                  <span className="material-symbols-outlined font-black">
+                    terminal
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold">Basic Information</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                  Module Metadata
+                </h3>
               </div>
 
-              <div className="space-y-5 md:space-y-6">
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                    Course Title
+              <div className="space-y-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                    Node Title
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-[#5048e5] focus:border-transparent outline-none transition-all text-sm md:text-base"
-                    placeholder="e.g. Mastering Next.js 14"
+                    className="w-full px-5 py-4 bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl focus:border-[#13ec5b] outline-none transition-all text-sm font-bold"
+                    placeholder="e.g. Applied Neural Architectures"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                    Subtitle
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                    Protocol Brief (Subtitle)
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-[#5048e5] focus:border-transparent outline-none transition-all text-sm"
-                    placeholder="Short summary to grab student attention"
+                    className="w-full px-5 py-4 bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl focus:border-[#13ec5b] outline-none transition-all text-sm font-bold"
+                    placeholder="Brief architectural summary of knowledge transfer"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                  <div>
-                    <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                      Category
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                      Domain Category
                     </label>
-                    <select className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-[#5048e5] outline-none text-sm cursor-pointer">
-                      <option>Development</option>
-                      <option>Design</option>
-                      <option>Business</option>
+                    <select className="w-full px-5 py-4 bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl focus:border-[#13ec5b] outline-none text-xs font-black uppercase tracking-widest cursor-pointer appearance-none transition-all">
+                      <option>Engineering</option>
+                      <option>Logic Systems</option>
+                      <option>Data Synthesis</option>
                     </select>
                   </div>
-                  <div>
-                    <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                      Experience Level
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                      Complexity Level
                     </label>
-                    <select className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-[#5048e5] outline-none text-sm cursor-pointer">
-                      <option>Beginner</option>
+                    <select className="w-full px-5 py-4 bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl focus:border-[#13ec5b] outline-none text-xs font-black uppercase tracking-widest cursor-pointer appearance-none transition-all">
+                      <option>Novice</option>
                       <option>Intermediate</option>
                       <option>Advanced</option>
                     </select>
@@ -147,20 +156,24 @@ export default function CourseCreationPage() {
               </div>
             </section>
 
-            {/* 2. Description */}
-            <section className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-5 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="size-10 rounded-lg bg-indigo-50 dark:bg-[#5048e5]/10 flex items-center justify-center text-[#5048e5]">
-                  <span className="material-symbols-outlined">description</span>
+            {/* 2. Logic Description */}
+            <section className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 md:p-10 shadow-sm">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="size-12 rounded-2xl bg-[#13ec5b]/10 flex items-center justify-center text-[#13ec5b] border border-[#13ec5b]/20">
+                  <span className="material-symbols-outlined font-black">
+                    subject
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold">Course Description</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                  Module Protocol
+                </h3>
               </div>
 
-              <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#5048e5] transition-all">
-                <div className="bg-slate-50 dark:bg-slate-800/50 p-2 border-b border-slate-200 dark:border-slate-700 flex flex-wrap gap-1">
+              <div className="border border-[#e7f3eb] dark:border-[#1e3a27] rounded-[2rem] overflow-hidden focus-within:border-[#13ec5b]/40 transition-all bg-[#fcfdfc] dark:bg-[#0a0f0b]">
+                <div className="bg-white dark:bg-[#15291b] p-3 border-b border-[#e7f3eb] dark:border-[#1e3a27] flex flex-wrap gap-2">
                   {[
                     "format_bold",
-                    "format_italic",
+                    "terminal",
                     "format_list_bulleted",
                     "link",
                     "undo",
@@ -168,9 +181,9 @@ export default function CourseCreationPage() {
                   ].map((icon) => (
                     <button
                       key={icon}
-                      className="p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors text-slate-600 dark:text-slate-400"
+                      className="p-2 hover:text-[#13ec5b] text-[#5c7a67] transition-all"
                     >
-                      <span className="material-symbols-outlined !text-xl">
+                      <span className="material-symbols-outlined text-lg">
                         {icon}
                       </span>
                     </button>
@@ -178,148 +191,156 @@ export default function CourseCreationPage() {
                 </div>
                 <textarea
                   rows={8}
-                  className="w-full px-4 py-4 bg-transparent border-none focus:ring-0 text-sm outline-none dark:text-slate-200 resize-none"
-                  placeholder="What will students learn in your course?"
+                  className="w-full px-6 py-6 bg-transparent border-none focus:ring-0 text-xs font-bold leading-relaxed outline-none text-[#15291b] dark:text-slate-300 resize-none"
+                  placeholder="Define the primary learning outcomes and technical methodologies..."
                 ></textarea>
               </div>
             </section>
 
-            {/* 3. Media */}
-            <section className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-5 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-6 md:mb-8">
-                <div className="size-10 rounded-lg bg-indigo-50 dark:bg-[#5048e5]/10 flex items-center justify-center text-[#5048e5]">
-                  <span className="material-symbols-outlined">
-                    movie_filter
+            {/* 3. Visualization Assets */}
+            <section className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 md:p-10 shadow-sm">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="size-12 rounded-2xl bg-[#13ec5b]/10 flex items-center justify-center text-[#13ec5b] border border-[#13ec5b]/20">
+                  <span className="material-symbols-outlined font-black">
+                    palette
                   </span>
                 </div>
-                <h3 className="text-lg font-bold">Media Assets</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                  Interface Visualization
+                </h3>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <p className="text-sm font-bold mb-3">Course Thumbnail</p>
-                  <div className="aspect-video w-full border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-800/30 hover:border-[#5048e5]/50 transition-all cursor-pointer group">
-                    <span className="material-symbols-outlined text-3xl text-slate-400 group-hover:text-[#5048e5] mb-2 transition-colors">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="space-y-4">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-[#5c7a67]">
+                    Module Thumbnail
+                  </p>
+                  <div className="aspect-video w-full border-2 border-dashed border-[#e7f3eb] dark:border-[#1e3a27] rounded-[2rem] flex flex-col items-center justify-center bg-[#fcfdfc] dark:bg-[#0a0f0b] hover:border-[#13ec5b]/40 transition-all cursor-pointer group">
+                    <span className="material-symbols-outlined text-4xl text-[#5c7a67] group-hover:text-[#13ec5b] group-hover:scale-110 mb-3 transition-all font-black">
                       cloud_upload
                     </span>
-                    <p className="text-xs font-bold">Upload Image</p>
-                    <p className="text-[10px] text-slate-500 mt-1">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-[#15291b] dark:text-white">
+                      Transmit Payload
+                    </p>
+                    <p className="text-[8px] font-black text-[#5c7a67] mt-1 uppercase tracking-widest opacity-60">
                       1280x720 (PNG, JPG)
                     </p>
                   </div>
                 </div>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm font-bold mb-3">Promo Video URL</p>
-                    <div className="relative">
-                      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">
+                <div className="space-y-6">
+                  <div className="space-y-4">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-[#5c7a67]">
+                      Protocol Video URL
+                    </p>
+                    <div className="relative group">
+                      <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#5c7a67] text-lg group-focus-within:text-[#13ec5b] transition-colors">
                         link
                       </span>
                       <input
                         type="text"
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-[#5048e5] outline-none text-sm transition-all"
+                        className="w-full pl-12 pr-4 py-4 bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl focus:border-[#13ec5b] outline-none text-xs font-bold transition-all"
                         placeholder="Youtube or Vimeo link"
                       />
                     </div>
                   </div>
-                  <div className="p-4 bg-indigo-50 dark:bg-[#5048e5]/10 rounded-xl border border-indigo-100 dark:border-[#5048e5]/20 flex gap-3">
-                    <span className="material-symbols-outlined text-[#5048e5]">
-                      lightbulb
+                  <div className="p-6 bg-[#13ec5b]/5 rounded-3xl border border-[#13ec5b]/10 flex gap-4">
+                    <span className="material-symbols-outlined text-[#13ec5b] fill-1">
+                      auto_awesome
                     </span>
-                    <p className="text-[11px] text-indigo-800 dark:text-indigo-300 leading-relaxed">
-                      Courses with a high-quality promo video have an **80%
-                      higher** enrollment rate.
+                    <p className="text-[10px] text-[#5c7a67] dark:text-[#a0c4ab] font-bold uppercase leading-relaxed tracking-tight">
+                      Architect Tip: Modules with high-fidelity visualization
+                      assets see{" "}
+                      <span className="text-[#13ec5b]">
+                        80% higher synchronization
+                      </span>{" "}
+                      across the network.
                     </p>
                   </div>
                 </div>
               </div>
             </section>
-
-            {/* Mobile Actions (Visible only on mobile at bottom of form) */}
-            <div className="flex md:hidden justify-between items-center pt-4">
-              <button className="text-slate-500 font-bold text-sm px-4">
-                Cancel
-              </button>
-              <button className="px-8 py-3 bg-[#5048e5] text-white rounded-xl font-bold text-sm shadow-lg shadow-[#5048e5]/20">
-                Continue
-              </button>
-            </div>
           </div>
 
-          {/* Right Column: AI & Help (Desktop Side, Mobile Stack) */}
-          <div className="col-span-12 lg:col-span-4 space-y-6">
-            <div className="lg:sticky lg:top-48 space-y-6">
-              {/* AI Assistant Card */}
-              <div className="bg-[#1a192e] rounded-2xl p-6 text-white shadow-xl relative overflow-hidden border border-slate-800">
-                <div className="absolute -right-6 -top-6 size-24 bg-[#5048e5]/20 rounded-full blur-2xl"></div>
+          {/* Right Column: Neural Sync & Protocol */}
+          <div className="col-span-12 lg:col-span-4 space-y-8">
+            <div className="lg:sticky lg:top-44 space-y-8">
+              {/* Neural Optimizer Card */}
+              <div className="bg-[#15291b] rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden border border-[#1e3a27] group">
+                <div className="absolute -right-10 -top-10 size-40 bg-[#13ec5b] blur-[100px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
 
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="size-8 rounded-lg bg-[#5048e5] flex items-center justify-center">
-                    <span className="material-symbols-outlined text-white text-lg">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="size-10 rounded-xl bg-[#13ec5b] flex items-center justify-center text-[#15291b] shadow-lg shadow-[#13ec5b]/20">
+                    <span className="material-symbols-outlined font-black">
                       auto_awesome
                     </span>
                   </div>
-                  <h4 className="font-bold text-sm">AI Content Assistant</h4>
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#13ec5b]">
+                    Neural Optimization
+                  </h4>
                 </div>
 
-                <div className="space-y-5">
+                <div className="space-y-8">
                   <div>
-                    <div className="flex justify-between items-end mb-2">
-                      <p className="text-[10px] font-black uppercase tracking-[0.1em] text-[#5048e5]">
-                        Optimizing Score
+                    <div className="flex justify-between items-end mb-3">
+                      <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#5c7a67]">
+                        Schema Sync Score
                       </p>
-                      <span className="text-xs font-bold text-indigo-400">
+                      <span className="text-xs font-black text-[#13ec5b]">
                         42%
                       </span>
                     </div>
-                    <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#5048e5] w-[42%] transition-all duration-1000"></div>
+                    <div className="h-1.5 w-full bg-[#0a0f0b] rounded-full overflow-hidden border border-white/5">
+                      <div className="h-full bg-[#13ec5b] w-[42%] transition-all duration-1000 shadow-[0_0_10px_#13ec5b]"></div>
                     </div>
                   </div>
 
-                  <div className="p-3 bg-white/5 rounded-xl border border-white/10">
-                    <p className="text-xs text-slate-300 leading-relaxed italic">
-                      &quot;Try adding keywords like{" "}
-                      <span className="text-white font-medium">Full-stack</span>{" "}
+                  <div className="p-5 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
+                    <p className="text-[11px] text-[#a0c4ab] leading-relaxed font-medium italic">
+                      &quot;Inject keywords such as{" "}
+                      <span className="text-white font-black underline decoration-[#13ec5b]">
+                        Infrastructure
+                      </span>{" "}
                       or{" "}
-                      <span className="text-white font-medium">Hands-on</span>{" "}
-                      to your title to increase search reach.&quot;
+                      <span className="text-white font-black underline decoration-[#13ec5b]">
+                        Scalability
+                      </span>{" "}
+                      into your schema to increase network reach.&quot;
                     </p>
                   </div>
                 </div>
 
-                <button className="w-full mt-6 py-3 bg-[#5048e5] hover:bg-[#5048e5]/80 rounded-xl text-xs font-bold transition-all shadow-lg shadow-[#5048e5]/20">
-                  Optimize My Content
+                <button className="w-full mt-10 py-4 bg-[#13ec5b] text-[#15291b] rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all shadow-xl shadow-[#13ec5b]/10 hover:scale-[1.02]">
+                  Calibrate Metadata
                 </button>
               </div>
 
-              {/* Help Card */}
-              <div className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
-                <h4 className="font-bold text-sm mb-4">Instructor Tips</h4>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-slate-400 text-lg">
-                      check_circle
-                    </span>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Title should be catchy but clearly explain the outcome.
-                    </p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-slate-400 text-lg">
-                      check_circle
-                    </span>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Subtitles should be under 120 characters.
-                    </p>
-                  </li>
+              {/* Protocol Standards Card */}
+              <div className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 shadow-sm">
+                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67] mb-8">
+                  Architect Standards
+                </h4>
+                <ul className="space-y-6">
+                  {[
+                    "Title must identify primary knowledge outcome",
+                    "Brief should be constrained to 120 characters",
+                    "Domain categorization must match curriculum",
+                  ].map((tip) => (
+                    <li key={tip} className="flex items-start gap-4">
+                      <span className="material-symbols-outlined text-[#13ec5b] text-lg font-black">
+                        check_circle
+                      </span>
+                      <p className="text-[11px] font-bold text-[#5c7a67] dark:text-[#a0c4ab] leading-tight uppercase tracking-tight">
+                        {tip}
+                      </p>
+                    </li>
+                  ))}
                 </ul>
-                <hr className="my-5 border-slate-100 dark:border-slate-800" />
+                <div className="h-px bg-[#e7f3eb] dark:bg-[#1e3a27] my-8" />
                 <Link
                   href="#"
-                  className="flex items-center justify-center gap-2 text-xs font-bold text-[#5048e5] hover:underline"
+                  className="flex items-center justify-center gap-3 text-[10px] font-black text-[#13ec5b] uppercase tracking-widest hover:underline decoration-2"
                 >
-                  View Quality Standards
+                  Quality Protocol Docs
                   <span className="material-symbols-outlined text-sm">
                     open_in_new
                   </span>

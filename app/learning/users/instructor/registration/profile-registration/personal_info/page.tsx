@@ -9,196 +9,172 @@ export default function InstructorRegistrationStep1() {
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Proceeding to step 2...");
-    router.push('/users/instructor/registration/profile-registration/preferences');
+    router.push(
+      "/learning/users/instructor/registration/profile-registration/preferences",
+    );
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f6f8] dark:bg-[#121121] font-sans text-slate-900 dark:text-slate-100">
-      <main className="max-w-7xl mx-auto p-6 md:p-8">
-        {/* --- Progress Steps --- */}
-        <div className="mb-10 max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            {/* Step 1: Active */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-[#5048e5] text-white flex items-center justify-center font-bold text-sm">
-                1
-              </div>
-              <span className="text-xs font-bold text-[#5048e5]">
-                Personal Info
-              </span>
-            </div>
-            <div className="h-1 flex-1 bg-slate-200 dark:bg-slate-800 mx-2 -mt-6"></div>
+    <div className="min-h-screen bg-[#fcfdfc] dark:bg-[#0a0f0b] font-sans text-[#15291b] dark:text-slate-50 transition-colors duration-300">
+      <main className="max-w-7xl mx-auto p-6 md:p-12">
+        {/* --- Progress Pipeline --- */}
+        <div className="mb-16 max-w-4xl mx-auto">
+          <div className="flex items-center justify-between relative">
+            <div className="absolute top-4 left-0 w-full h-[2px] bg-[#e7f3eb] dark:bg-[#1e3a27] z-0"></div>
 
-            {/* Step 2 */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm">
-                2
+            {[
+              { step: 1, label: "Identity", active: true },
+              { step: 2, label: "Preferences", active: false },
+              { step: 3, label: "Verification", active: false },
+              { step: 4, label: "Sync Review", active: false },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="flex flex-col items-center gap-3 relative z-10 flex-1"
+              >
+                <div
+                  className={`size-9 rounded-xl flex items-center justify-center font-black text-xs transition-all duration-500 border-2 ${
+                    item.active
+                      ? "bg-[#13ec5b] border-[#13ec5b] text-[#15291b] shadow-lg shadow-[#13ec5b]/20 scale-110"
+                      : "bg-white dark:bg-[#15291b] border-[#e7f3eb] dark:border-[#1e3a27] text-[#5c7a67]"
+                  }`}
+                >
+                  {item.step.toString().padStart(2, "0")}
+                </div>
+                <span
+                  className={`text-[9px] font-black uppercase tracking-[0.2em] ${item.active ? "text-[#13ec5b]" : "text-[#5c7a67]"}`}
+                >
+                  {item.label}
+                </span>
               </div>
-              <span className="text-xs font-medium text-slate-500">
-                Preferences
-              </span>
-            </div>
-            <div className="h-1 flex-1 bg-slate-200 dark:bg-slate-800 mx-2 -mt-6"></div>
-
-            {/* Step 3 */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm">
-                3
-              </div>
-              <span className="text-xs font-medium text-slate-500">
-                Verification
-              </span>
-            </div>
-            <div className="h-1 flex-1 bg-slate-200 dark:bg-slate-800 mx-2 -mt-6"></div>
-
-            {/* Step 4 */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm">
-                4
-              </div>
-              <span className="text-xs font-medium text-slate-500">Review</span>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-8">
-          {/* --- Left Column: Registration Form --- */}
-          <div className="col-span-12 lg:col-span-8 space-y-8">
-            <div className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
-              {/* Profile Photo Upload */}
-              <div className="flex flex-col sm:flex-row items-center gap-8 mb-10 pb-10 border-b border-slate-100 dark:border-slate-800">
+        <div className="grid grid-cols-12 gap-10">
+          {/* --- Main Registration Form --- */}
+          <div className="col-span-12 lg:col-span-8 space-y-10">
+            <div className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 md:p-12 shadow-sm relative overflow-hidden">
+              {/* Profile Avatar Uplink */}
+              <div className="flex flex-col sm:flex-row items-center gap-10 mb-12 pb-12 border-b border-[#e7f3eb] dark:border-[#1e3a27]">
                 <div className="relative group cursor-pointer">
-                  <div className="size-24 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-dashed border-slate-300 dark:border-slate-700 flex items-center justify-center overflow-hidden group-hover:border-[#5048e5] transition-colors">
-                    <span className="material-symbols-outlined text-slate-400 text-3xl group-hover:hidden">
+                  <div className="size-28 rounded-[2rem] bg-[#f0f7f2] dark:bg-[#0a0f0b] border-2 border-dashed border-[#13ec5b]/30 flex items-center justify-center overflow-hidden group-hover:border-[#13ec5b] transition-all">
+                    <span className="material-symbols-outlined text-[#13ec5b] text-4xl group-hover:scale-110 transition-transform">
                       add_a_photo
                     </span>
-                    <div className="hidden group-hover:flex absolute inset-0 bg-black/40 items-center justify-center text-white text-[10px] font-bold">
-                      UPLOAD
-                    </div>
+                    <div className="absolute inset-0 bg-[#13ec5b]/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
                 </div>
-                <div className="text-center sm:text-left">
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                    Profile Picture
+                <div className="text-center sm:text-left space-y-2">
+                  <h3 className="text-xl font-black tracking-tight">
+                    Identity Visual
                   </h3>
-                  <p className="text-sm text-slate-500 max-w-sm mt-1">
-                    A professional photo helps students connect with you.
-                    Supported formats: JPG, PNG. Max 5MB.
+                  <p className="text-sm text-[#5c7a67] dark:text-[#a0c4ab] max-w-sm font-medium leading-relaxed">
+                    A high-fidelity professional photo improves student node
+                    connections. JPG or PNG payload (Max 5MB).
                   </p>
                 </div>
               </div>
 
-              <form className="space-y-10" onSubmit={handleNext}>
-                {/* Personal Details Section */}
-                <section>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#5048e5]">
+              <form className="space-y-12" onSubmit={handleNext}>
+                {/* Personal Section */}
+                <section className="space-y-8">
+                  <div className="flex items-center gap-3">
+                    <span className="material-symbols-outlined text-[#13ec5b] font-black">
                       person
                     </span>
-                    Personal Details
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Full Name
-                      </label>
-                      <input
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                        placeholder="e.g. Dr. Sarah Johnson"
-                        type="text"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Email Address
-                      </label>
-                      <input
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                        placeholder="sarah.j@university.edu"
-                        type="email"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Phone Number
-                      </label>
-                      <input
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                        placeholder="+1 (555) 000-0000"
-                        type="tel"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Date of Birth
-                      </label>
-                      <input
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                        type="date"
-                      />
-                    </div>
-                    <div className="space-y-2 md:col-span-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Physical Address
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                      Personal Metadata
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[
+                      {
+                        label: "Full Identity Name",
+                        placeholder: "e.g. Prof. Alan Turing",
+                      },
+                      {
+                        label: "Neural Email Node",
+                        placeholder: "architect@university.edu",
+                        type: "email",
+                      },
+                      {
+                        label: "Communication Link",
+                        placeholder: "+1 (555) 000-0000",
+                        type: "tel",
+                      },
+                      { label: "Date of Origin", type: "date" },
+                    ].map((field) => (
+                      <div key={field.label} className="space-y-3">
+                        <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                          {field.label}
+                        </label>
+                        <input
+                          className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl px-5 py-3.5 text-sm font-bold text-[#15291b] dark:text-white focus:border-[#13ec5b] outline-none transition-all"
+                          placeholder={field.placeholder}
+                          type={field.type || "text"}
+                        />
+                      </div>
+                    ))}
+                    <div className="space-y-3 md:col-span-2">
+                      <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                        Physical Residency Node
                       </label>
                       <textarea
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white resize-none"
-                        placeholder="Street, City, State, ZIP Code"
+                        className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl px-5 py-3.5 text-sm font-bold text-[#15291b] dark:text-white focus:border-[#13ec5b] outline-none transition-all resize-none"
+                        placeholder="Street, City, Sector, ZIP Code"
                         rows={2}
                       ></textarea>
                     </div>
                   </div>
                 </section>
 
-                {/* Credentials Section */}
-                <section>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#5048e5]">
+                {/* Professional Credentials Section */}
+                <section className="space-y-8">
+                  <div className="flex items-center gap-3">
+                    <span className="material-symbols-outlined text-[#13ec5b] font-black">
                       workspace_premium
                     </span>
-                    Professional Credentials
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Highest Degree/Certification
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                      Academic Credentials
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                        Highest Certification
                       </label>
-                      <select className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white">
-                        <option>Select Degree</option>
+                      <select className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl px-5 py-3.5 text-sm font-bold text-[#15291b] dark:text-white focus:border-[#13ec5b] outline-none transition-all appearance-none">
+                        <option>Select Tier</option>
                         <option>PhD / Doctorate</option>
-                        <option>Master&apos;s Degree</option>
-                        <option>Bachelor&apos;s Degree</option>
+                        <option>Master's Node</option>
                         <option>Professional Certificate</option>
                       </select>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Years of Teaching Experience
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                        Instructional Cycles (Years)
                       </label>
                       <input
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                        min="0"
-                        placeholder="e.g. 5"
+                        className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl px-5 py-3.5 text-sm font-bold text-[#15291b] dark:text-white focus:border-[#13ec5b] outline-none transition-all"
+                        placeholder="e.g. 05"
                         type="number"
                       />
                     </div>
-                    <div className="md:col-span-2 space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Resume / CV
+                    <div className="md:col-span-2 space-y-3">
+                      <label className="text-[10px] font-black text-[#5c7a67] dark:text-[#a0c4ab] uppercase tracking-widest">
+                        Manifest / CV Payload
                       </label>
-                      <div className="border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-8 text-center hover:border-[#5048e5] hover:bg-[#5048e5]/5 transition-all cursor-pointer group">
-                        <span className="material-symbols-outlined text-slate-400 text-4xl mb-2 group-hover:text-[#5048e5] transition-colors">
-                          upload_file
+                      <div className="border-2 border-dashed border-[#e7f3eb] dark:border-[#1e3a27] rounded-[2rem] p-10 text-center hover:border-[#13ec5b]/50 hover:bg-[#13ec5b]/5 transition-all cursor-pointer group bg-[#fcfdfc] dark:bg-[#0a0f0b]">
+                        <span className="material-symbols-outlined text-[#13ec5b] text-5xl mb-4 group-hover:scale-110 transition-transform font-black">
+                          cloud_upload
                         </span>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-                          Drag and drop your CV here, or{" "}
-                          <span className="text-[#5048e5] underline">
-                            browse
-                          </span>
+                        <p className="text-sm font-black uppercase tracking-tight text-[#15291b] dark:text-white">
+                          Transmit CV Payload
                         </p>
-                        <p className="text-xs text-slate-400 mt-1">
+                        <p className="text-[9px] font-black text-[#5c7a67] mt-2 uppercase tracking-[0.2em]">
                           PDF, DOCX up to 10MB
                         </p>
                       </div>
@@ -208,111 +184,111 @@ export default function InstructorRegistrationStep1() {
               </form>
             </div>
 
-            {/* Next Button */}
-            <div className="flex justify-end pt-4">
+            {/* Navigation Interface */}
+            <div className="flex justify-end pt-6">
               <button
                 onClick={handleNext}
-                className="bg-[linear-gradient(135deg,#4F46E5_0%,#7C3AED_100%)] hover:opacity-90 text-white font-bold py-3.5 px-8 rounded-xl transition-all flex items-center gap-3 shadow-lg shadow-[#5048e5]/20 active:scale-95"
+                className="bg-[#13ec5b] text-[#15291b] font-black py-4 px-10 rounded-2xl text-[10px] uppercase tracking-[0.2em] shadow-xl shadow-[#13ec5b]/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-4"
               >
-                Next: Teaching Preferences
-                <span className="material-symbols-outlined">arrow_forward</span>
+                Proceed: Teaching Preferences
+                <span className="material-symbols-outlined font-black">
+                  arrow_forward
+                </span>
               </button>
             </div>
           </div>
 
-          {/* --- Right Column: Sidebar Info --- */}
-          <aside className="col-span-12 lg:col-span-4 space-y-6">
-            {/* Benefits Card */}
-            <div className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
-                Registration Benefits
-              </h3>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined">
-                      auto_awesome
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      AI-Assisted Course Creation
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Our AI helps you draft curricula and generate quizzes
-                      based on your content.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="size-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined">public</span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      Global Student Reach
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Connect with thousands of learners from over 120 countries
-                      automatically.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="size-10 rounded-lg bg-purple-50 dark:bg-purple-900/20 text-purple-600 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined">payments</span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      Competitive Revenue Share
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Earn more with our industry-leading 85% instructor revenue
-                      share model.
-                    </p>
-                  </div>
-                </div>
+          {/* --- Technical Side Panel --- */}
+          <aside className="col-span-12 lg:col-span-4 space-y-8">
+            <div className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 space-y-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-5">
+                <span className="material-symbols-outlined text-7xl font-black">
+                  shield
+                </span>
               </div>
 
-              <div className="mt-8 p-4 bg-[#f6f6f8] dark:bg-[#121121] rounded-xl border border-slate-100 dark:border-slate-700">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="material-symbols-outlined text-amber-500 text-sm">
-                    info
+              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                Instructor Protocol
+              </h3>
+
+              <div className="space-y-10">
+                {[
+                  {
+                    icon: "auto_awesome",
+                    title: "AI-Augmented Creation",
+                    desc: "Our engine crafts baseline curricula and adaptive quiz nodes.",
+                  },
+                  {
+                    icon: "public",
+                    title: "Global Sync Reach",
+                    desc: "Connect your knowledge DNA with learners in 120+ countries.",
+                  },
+                  {
+                    icon: "bolt",
+                    title: "Elite Revenue Sync",
+                    desc: "Industry-leading 85% revenue share for verified architects.",
+                  },
+                ].map((benefit) => (
+                  <div key={benefit.title} className="flex gap-5 group">
+                    <div className="size-11 rounded-xl bg-[#13ec5b]/10 text-[#13ec5b] flex items-center justify-center shrink-0 border border-[#13ec5b]/20 group-hover:bg-[#13ec5b] group-hover:text-[#15291b] transition-all">
+                      <span className="material-symbols-outlined text-xl font-black">
+                        {benefit.icon}
+                      </span>
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-xs font-black uppercase tracking-tight group-hover:text-[#13ec5b] transition-colors">
+                        {benefit.title}
+                      </h4>
+                      <p className="text-[11px] font-medium text-[#5c7a67] dark:text-[#a0c4ab] leading-relaxed">
+                        {benefit.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 p-6 bg-[#f0f7f2] dark:bg-[#0a0f0b] rounded-[1.5rem] border border-[#13ec5b]/10">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="material-symbols-outlined text-amber-500 text-base font-black">
+                    support_agent
                   </span>
-                  <span className="text-[10px] font-black uppercase text-slate-400 tracking-wider">
-                    Help Center
+                  <span className="text-[10px] font-black uppercase text-[#5c7a67] tracking-widest">
+                    Architect Support
                   </span>
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Need help with your application? Chat with our Instructor
-                  Success team.
+                <p className="text-[11px] font-medium text-[#5c7a67] dark:text-[#a0c4ab] leading-relaxed">
+                  Experiencing deployment lag? Synchronize with our Success
+                  Team.
                 </p>
-                <button className="mt-3 text-[#5048e5] text-xs font-bold hover:underline">
-                  Start Chat
+                <button className="mt-4 text-[#13ec5b] text-[10px] font-black uppercase tracking-widest hover:underline">
+                  Initialize Chat
                 </button>
               </div>
             </div>
 
-            {/* Testimonial */}
-            <div className="bg-[#5048e5]/5 rounded-2xl border border-[#5048e5]/10 p-6 text-slate-600 dark:text-slate-400">
-              <p className="text-sm italic leading-relaxed">
-                &quot;Joining EduLearn was the best career move I made. The AI
-                tools saved me 40+ hours in course design.&quot;
+            {/* Architect Testimonial */}
+            <div className="bg-[#13ec5b]/5 rounded-[2rem] border border-[#13ec5b]/10 p-8 relative">
+              <span className="material-symbols-outlined absolute top-4 right-6 text-[#13ec5b] opacity-20 text-4xl">
+                format_quote
+              </span>
+              <p className="text-xs font-medium italic text-[#5c7a67] dark:text-[#a0c4ab] leading-relaxed relative z-10">
+                "EduDNA's AI synchronization protocol saved me 40+ instructional
+                hours. It's the most advanced knowledge deployment platform
+                currently active."
               </p>
-              <div className="mt-4 flex items-center gap-3 not-italic">
-                <div
-                  className="size-8 rounded-full bg-slate-300 bg-cover bg-center"
-                  style={{
-                    backgroundImage:
-                      'url("https://ui-avatars.com/api/?name=Michael+Chen&background=random")',
-                  }}
-                ></div>
+              <div className="mt-6 flex items-center gap-4">
+                <div className="size-10 rounded-xl bg-[#15291b] border border-[#13ec5b]/30 overflow-hidden">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Michael+Chen&background=15291b&color=13ec5b&bold=true"
+                    alt="Architect"
+                  />
+                </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900 dark:text-white">
+                  <p className="text-[10px] font-black uppercase text-[#15291b] dark:text-white tracking-tight">
                     Prof. Michael Chen
                   </p>
-                  <p className="text-[10px] text-slate-500">
-                    Computer Science Instructor
+                  <p className="text-[8px] font-black uppercase text-[#13ec5b] tracking-widest">
+                    Logic & Systems Architect
                   </p>
                 </div>
               </div>
@@ -321,18 +297,20 @@ export default function InstructorRegistrationStep1() {
         </div>
       </main>
 
-      {/* --- Footer --- */}
-      <footer className="max-w-7xl mx-auto px-8 py-10 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-        <p>© 2023 EduLearn LMS Platform. All rights reserved.</p>
-        <div className="flex gap-6">
-          <Link href="#" className="hover:text-[#5048e5]">
-            Privacy Policy
+      {/* --- HUD Footer --- */}
+      <footer className="max-w-7xl mx-auto px-10 py-12 border-t border-[#e7f3eb] dark:border-[#1e3a27] flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+          © {new Date().getFullYear()} EduDNA Neural Network • Protocol 3.12
+        </p>
+        <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest">
+          <Link href="#" className="hover:text-[#13ec5b] transition-colors">
+            Privacy Node
           </Link>
-          <Link href="#" className="hover:text-[#5048e5]">
-            Terms of Service
+          <Link href="#" className="hover:text-[#13ec5b] transition-colors">
+            Legal Terms
           </Link>
-          <Link href="#" className="hover:text-[#5048e5]">
-            Instructor Agreement
+          <Link href="#" className="hover:text-[#13ec5b] transition-colors">
+            Instructor Pact
           </Link>
         </div>
       </footer>

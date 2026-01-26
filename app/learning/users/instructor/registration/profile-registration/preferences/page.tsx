@@ -10,151 +10,150 @@ export default function InstructorRegistrationStep2() {
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Proceeding to step 3...");
     router.push(
-      "/users/instructor/registration/profile-registration/verification",
+      "/learning/users/instructor/registration/profile-registration/verification",
     );
   };
 
   const handleBack = () => {
     router.push(
-      "/users/instructor/registration/profile-registration/personal_info",
+      "/learning/users/instructor/registration/profile-registration/personal_info",
     );
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f6f8] dark:bg-[#121121] font-sans text-slate-900 dark:text-slate-100">
-      <main className="max-w-7xl mx-auto p-6 md:p-8">
-        {/* --- Progress Steps --- */}
-        <div className="mb-10 max-w-4xl mx-auto">
-          <div className="flex items-center justify-between">
-            {/* Step 1: Completed */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">
-                <span className="material-symbols-outlined text-sm">check</span>
-              </div>
-              <span className="text-xs font-medium text-slate-500">
-                Personal Info
-              </span>
-            </div>
-            <div className="h-1 flex-1 bg-emerald-500 mx-2 -mt-6"></div>
+    <div className="min-h-screen bg-[#fcfdfc] dark:bg-[#0a0f0b] font-sans text-[#15291b] dark:text-slate-50 transition-colors duration-300">
+      <main className="max-w-7xl mx-auto p-6 md:p-12">
+        {/* --- Progress Pipeline --- */}
+        <div className="mb-16 max-w-4xl mx-auto">
+          <div className="flex items-center justify-between relative">
+            <div className="absolute top-4 left-0 w-full h-[2px] bg-[#e7f3eb] dark:bg-[#1e3a27] z-0"></div>
 
-            {/* Step 2: Active */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-[#5048e5] text-white flex items-center justify-center font-bold text-sm">
-                2
+            {[
+              { step: 1, label: "Identity", status: "complete" },
+              { step: 2, label: "DNA Protocol", status: "active" },
+              { step: 3, label: "Verification", status: "pending" },
+              { step: 4, label: "Sync Review", status: "pending" },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="flex flex-col items-center gap-3 relative z-10 flex-1"
+              >
+                <div
+                  className={`size-9 rounded-xl flex items-center justify-center font-black text-xs transition-all duration-500 border-2 ${
+                    item.status === "active"
+                      ? "bg-[#13ec5b] border-[#13ec5b] text-[#15291b] shadow-lg shadow-[#13ec5b]/20 scale-110"
+                      : item.status === "complete"
+                        ? "bg-[#15291b] border-[#13ec5b] text-[#13ec5b]"
+                        : "bg-white dark:bg-[#15291b] border-[#e7f3eb] dark:border-[#1e3a27] text-[#5c7a67]"
+                  }`}
+                >
+                  {item.status === "complete" ? (
+                    <span className="material-symbols-outlined text-sm font-black">
+                      check
+                    </span>
+                  ) : (
+                    item.step.toString().padStart(2, "0")
+                  )}
+                </div>
+                <span
+                  className={`text-[9px] font-black uppercase tracking-[0.2em] ${item.status === "active" ? "text-[#13ec5b]" : "text-[#5c7a67]"}`}
+                >
+                  {item.label}
+                </span>
               </div>
-              <span className="text-xs font-bold text-[#5048e5]">
-                Preferences
-              </span>
-            </div>
-            <div className="h-1 flex-1 bg-slate-200 dark:bg-slate-800 mx-2 -mt-6"></div>
-
-            {/* Step 3 */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm">
-                3
-              </div>
-              <span className="text-xs font-medium text-slate-500">
-                Verification
-              </span>
-            </div>
-            <div className="h-1 flex-1 bg-slate-200 dark:bg-slate-800 mx-2 -mt-6"></div>
-
-            {/* Step 4 */}
-            <div className="flex flex-col items-center gap-2 flex-1">
-              <div className="size-8 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center font-bold text-sm">
-                4
-              </div>
-              <span className="text-xs font-medium text-slate-500">Review</span>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-8">
-          {/* --- Left Column: Preferences Form --- */}
-          <div className="col-span-12 lg:col-span-8 space-y-8">
-            <div className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
-              <form className="space-y-10" onSubmit={handleNext}>
+        <div className="grid grid-cols-12 gap-10">
+          {/* --- Main Preferences Form --- */}
+          <div className="col-span-12 lg:col-span-8 space-y-10">
+            <div className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 md:p-12 shadow-sm relative">
+              <form className="space-y-12" onSubmit={handleNext}>
                 {/* Areas of Expertise */}
-                <section>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#5048e5]">
-                      psychology
-                    </span>
-                    Areas of Expertise
-                  </h3>
-                  <p className="text-sm text-slate-500 mb-6">
-                    Select the subjects you are qualified to teach. This helps
-                    us match you with the right students.
-                  </p>
-                  <div className="space-y-4">
-                    <div className="relative">
-                      <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                <section className="space-y-6">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-xl font-black tracking-tight flex items-center gap-3">
+                      <span className="material-symbols-outlined text-[#13ec5b] font-black">
+                        psychology
+                      </span>
+                      Knowledge Domains
+                    </h3>
+                    <p className="text-sm font-medium text-[#5c7a67] dark:text-[#a0c4ab]">
+                      Identify the technical nodes you are qualified to
+                      architect.
+                    </p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="relative group">
+                      <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#5c7a67] group-focus-within:text-[#13ec5b] transition-colors">
                         search
                       </span>
                       <input
-                        className="w-full bg-[#f6f6f8] dark:bg-[#121121] border-slate-200 dark:border-slate-700 rounded-xl pl-11 pr-4 py-3 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                        placeholder="Search subjects (e.g. Data Science, UI Design...)"
+                        className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl pl-12 pr-4 py-4 text-xs font-bold focus:border-[#13ec5b] outline-none transition-all"
+                        placeholder="Filter subject nodes (e.g. Neural Networks, Architecture...)"
                         type="text"
                       />
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-3">
                       {[
                         "Computer Science",
-                        "Data Science",
-                        "Machine Learning",
+                        "Data Logic",
+                        "Neural Training",
                       ].map((subject) => (
                         <span
                           key={subject}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold border border-blue-100 dark:border-blue-800"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#13ec5b]/10 text-[#13ec5b] rounded-xl text-[10px] font-black uppercase tracking-widest border border-[#13ec5b]/20"
                         >
-                          {subject}{" "}
+                          {subject}
                           <button
                             type="button"
-                            className="material-symbols-outlined text-base hover:text-blue-900 dark:hover:text-blue-100"
+                            className="material-symbols-outlined text-sm hover:text-white transition-colors"
                           >
                             close
                           </button>
                         </span>
                       ))}
                       <button
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full text-xs font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#f0f7f2] dark:bg-[#0a0f0b] text-[#5c7a67] dark:text-[#a0c4ab] rounded-xl text-[10px] font-black uppercase tracking-widest border border-[#e7f3eb] dark:border-[#1e3a27] hover:border-[#13ec5b] transition-all"
                         type="button"
                       >
-                        <span className="material-symbols-outlined text-base">
+                        <span className="material-symbols-outlined text-sm">
                           add
-                        </span>{" "}
-                        Add Subject
+                        </span>
+                        Inject Node
                       </button>
                     </div>
                   </div>
                 </section>
 
-                {/* Teaching Methodology */}
-                <section>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#5048e5]">
-                      history_edu
-                    </span>
-                    Teaching Methodology
-                  </h3>
-                  <p className="text-sm text-slate-500 mb-4">
-                    Describe your unique approach to teaching and how you engage
-                    with learners.
-                  </p>
-                  <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
-                    <div className="bg-[#f6f6f8] dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-2 flex gap-1">
+                {/* Pedagogical Protocol */}
+                <section className="space-y-6">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="text-xl font-black tracking-tight flex items-center gap-3">
+                      <span className="material-symbols-outlined text-[#13ec5b] font-black">
+                        history_edu
+                      </span>
+                      Pedagogical Protocol
+                    </h3>
+                    <p className="text-sm font-medium text-[#5c7a67] dark:text-[#a0c4ab]">
+                      Define your architectural approach to knowledge transfer.
+                    </p>
+                  </div>
+                  <div className="border border-[#e7f3eb] dark:border-[#1e3a27] rounded-[2rem] overflow-hidden bg-[#fcfdfc] dark:bg-[#0a0f0b]">
+                    <div className="bg-white dark:bg-[#15291b] border-b border-[#e7f3eb] dark:border-[#1e3a27] p-3 flex gap-2">
                       {[
                         "format_bold",
-                        "format_italic",
+                        "terminal",
                         "format_list_bulleted",
                         "link",
                       ].map((icon) => (
                         <button
                           key={icon}
                           type="button"
-                          className="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-600 dark:text-slate-400"
+                          className="p-2 hover:text-[#13ec5b] text-[#5c7a67] transition-all"
                         >
                           <span className="material-symbols-outlined text-lg">
                             {icon}
@@ -163,155 +162,139 @@ export default function InstructorRegistrationStep2() {
                       ))}
                     </div>
                     <textarea
-                      className="w-full bg-white dark:bg-[#1a192e] border-none px-4 py-4 text-sm focus:ring-0 min-h-[160px] outline-none dark:text-white resize-none"
-                      placeholder="I believe in a project-based learning approach where students apply theoretical concepts to real-world scenarios immediately..."
+                      className="w-full bg-transparent border-none px-6 py-6 text-xs font-bold leading-relaxed focus:ring-0 min-h-[180px] outline-none text-[#15291b] dark:text-white resize-none"
+                      placeholder="I utilize a project-driven logic loop where student nodes apply theory to real-world datasets..."
                     ></textarea>
                   </div>
                 </section>
 
-                {/* Availability Grid */}
-                <section>
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[#5048e5]">
+                {/* Temporal Sync Matrix (Availability) */}
+                <section className="space-y-8">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-black tracking-tight flex items-center gap-3">
+                      <span className="material-symbols-outlined text-[#13ec5b] font-black">
                         calendar_month
                       </span>
-                      Weekly Availability
+                      Temporal Matrix
                     </h3>
-                    <span className="text-xs text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
-                      Timezone: UTC -05:00
+                    <span className="text-[9px] font-black text-[#5c7a67] bg-[#f0f7f2] dark:bg-[#0a0f0b] px-3 py-1 rounded-full uppercase tracking-widest border border-[#e7f3eb] dark:border-[#1e3a27]">
+                      Sync Time: UTC -05:00
                     </span>
                   </div>
-                  <div className="overflow-x-auto pb-2">
-                    <div className="min-w-[600px]">
-                      <div className="grid grid-cols-8 gap-0 text-sm">
-                        {/* Header Row */}
+
+                  <div className="overflow-x-auto scrollbar-hide">
+                    <div className="min-w-[600px] bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-[2rem] p-6">
+                      <div className="grid grid-cols-8 gap-1">
                         <div className="p-2"></div>
                         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(
                           (day, i) => (
                             <div
                               key={day}
-                              className={`p-2 text-center text-xs font-bold uppercase ${i >= 5 ? "text-[#5048e5]" : "text-slate-500"}`}
+                              className={`p-2 text-center text-[9px] font-black uppercase tracking-widest ${i >= 5 ? "text-[#13ec5b]" : "text-[#5c7a67]"}`}
                             >
                               {day}
                             </div>
                           ),
                         )}
 
-                        {/* Morning Row */}
-                        <div className="p-2 text-[10px] font-bold text-slate-400 flex items-center justify-end">
-                          09:00 AM
-                        </div>
-                        {[true, true, true, true, true, false, false].map(
-                          (active, i) => (
-                            <div
-                              key={`am-${i}`}
-                              className={`h-8 border border-slate-100 dark:border-slate-800 cursor-pointer hover:bg-[#5048e5]/10 transition-colors ${active ? "bg-[#5048e5]/20 border-[#5048e5]/30" : ""}`}
-                            ></div>
-                          ),
-                        )}
-
-                        {/* Afternoon Row */}
-                        <div className="p-2 text-[10px] font-bold text-slate-400 flex items-center justify-end">
-                          12:00 PM
-                        </div>
-                        {[false, false, false, false, false, true, true].map(
-                          (active, i) => (
-                            <div
-                              key={`pm-${i}`}
-                              className={`h-8 border border-slate-100 dark:border-slate-800 cursor-pointer hover:bg-[#5048e5]/10 transition-colors ${active ? "bg-[#5048e5]/20 border-[#5048e5]/30" : ""}`}
-                            ></div>
-                          ),
-                        )}
-
-                        {/* Evening Row */}
-                        <div className="p-2 text-[10px] font-bold text-slate-400 flex items-center justify-end">
-                          03:00 PM
-                        </div>
-                        {[true, true, true, true, true, false, false].map(
-                          (active, i) => (
-                            <div
-                              key={`eve-${i}`}
-                              className={`h-8 border border-slate-100 dark:border-slate-800 cursor-pointer hover:bg-[#5048e5]/10 transition-colors ${active ? "bg-[#5048e5]/20 border-[#5048e5]/30" : ""}`}
-                            ></div>
+                        {["09:00 AM", "12:00 PM", "03:00 PM"].map(
+                          (time, rowIdx) => (
+                            <React.Fragment key={time}>
+                              <div className="p-2 text-[8px] font-black text-[#5c7a67] flex items-center justify-end uppercase">
+                                {time}
+                              </div>
+                              {Array.from({ length: 7 }).map((_, colIdx) => {
+                                const isActive =
+                                  (rowIdx === 0 && colIdx < 5) ||
+                                  (rowIdx === 1 && colIdx >= 5) ||
+                                  (rowIdx === 2 && colIdx < 5);
+                                return (
+                                  <div
+                                    key={colIdx}
+                                    className={`h-10 rounded-lg border transition-all cursor-pointer ${
+                                      isActive
+                                        ? "bg-[#13ec5b]/20 border-[#13ec5b]/40 shadow-[inset_0_0_8px_rgba(19,236,91,0.1)]"
+                                        : "bg-transparent border-[#e7f3eb] dark:border-[#1e3a27] hover:bg-[#13ec5b]/5"
+                                    }`}
+                                  ></div>
+                                );
+                              })}
+                            </React.Fragment>
                           ),
                         )}
                       </div>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-400 mt-4 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-sm">
-                      info
-                    </span>
-                    Click or drag to highlight your available slots for live
-                    sessions and office hours.
-                  </p>
                 </section>
 
-                {/* Capacity Slider */}
-                <section>
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[#5048e5]">
+                {/* Deployment Capacity */}
+                <section className="space-y-8">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl font-black tracking-tight flex items-center gap-3">
+                      <span className="material-symbols-outlined text-[#13ec5b] font-black">
                         group
                       </span>
-                      Student Capacity
+                      Deployment Capacity
                     </h3>
-                    <div className="px-4 py-1.5 bg-[#5048e5]/10 text-[#5048e5] rounded-lg text-sm font-bold">
-                      Max <span>{studentCapacity}</span> Students
+                    <div className="px-5 py-2 bg-[#13ec5b] text-[#15291b] rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[#13ec5b]/10">
+                      Limit: {studentCapacity} Nodes
                     </div>
                   </div>
-                  <input
-                    type="range"
-                    min="5"
-                    max="200"
-                    step="5"
-                    value={studentCapacity}
-                    onChange={(e) => setStudentCapacity(Number(e.target.value))}
-                    className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#5048e5]"
-                  />
-                  <div className="flex justify-between mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    <span>Small Group (5)</span>
-                    <span>Medium (100)</span>
-                    <span>Large (200+)</span>
+                  <div className="relative pt-4">
+                    <input
+                      type="range"
+                      min="5"
+                      max="200"
+                      step="5"
+                      value={studentCapacity}
+                      onChange={(e) =>
+                        setStudentCapacity(Number(e.target.value))
+                      }
+                      className="w-full h-1.5 bg-[#e7f3eb] dark:bg-[#1e3a27] rounded-lg appearance-none cursor-pointer accent-[#13ec5b]"
+                    />
+                    <div className="flex justify-between mt-4 text-[9px] font-black text-[#5c7a67] uppercase tracking-[0.2em]">
+                      <span>Nano (5)</span>
+                      <span>Mid-Range (100)</span>
+                      <span>Mass Deployment (200+)</span>
+                    </div>
                   </div>
                 </section>
 
-                {/* Links */}
-                <section>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[#5048e5]">
+                {/* Neural Links */}
+                <section className="space-y-8">
+                  <h3 className="text-xl font-black tracking-tight flex items-center gap-3">
+                    <span className="material-symbols-outlined text-[#13ec5b] font-black">
                       share
                     </span>
-                    Professional Links
+                    Professional Uplinks
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        LinkedIn Profile
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-[#5c7a67] uppercase tracking-widest">
+                        LinkedIn Identifier
                       </label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs uppercase">
-                          linkedin.com/in/
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#5c7a67] text-[10px] font-black uppercase opacity-60">
+                          in/
                         </span>
                         <input
-                          className="w-full bg-[#f6f6f8] dark:bg-[#121121] border-slate-200 dark:border-slate-700 rounded-xl pl-28 pr-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
+                          className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl pl-12 pr-4 py-3.5 text-xs font-bold focus:border-[#13ec5b] outline-none transition-all"
                           placeholder="username"
                           type="text"
                         />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        Personal Website / Portfolio
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-[#5c7a67] uppercase tracking-widest">
+                        Global Portfolio Hub
                       </label>
                       <div className="relative">
-                        <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">
+                        <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#5c7a67] text-lg">
                           language
                         </span>
                         <input
-                          className="w-full bg-[#f6f6f8] dark:bg-[#121121] border-slate-200 dark:border-slate-700 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:border-[#5048e5] focus:ring-1 focus:ring-[#5048e5] outline-none transition-all dark:text-white"
-                          placeholder="https://yourwebsite.com"
+                          className="w-full bg-[#fcfdfc] dark:bg-[#0a0f0b] border border-[#e7f3eb] dark:border-[#1e3a27] rounded-2xl pl-12 pr-4 py-3.5 text-xs font-bold focus:border-[#13ec5b] outline-none transition-all"
+                          placeholder="https://dna-hub.com/profile"
                           type="url"
                         />
                       </div>
@@ -321,121 +304,113 @@ export default function InstructorRegistrationStep2() {
               </form>
             </div>
 
-            {/* Navigation Buttons */}
-            <div className="flex justify-between pt-4">
+            {/* Navigation Interface */}
+            <div className="flex justify-between pt-6">
               <button
                 onClick={handleBack}
-                className="bg-white dark:bg-[#1a192e] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-bold py-3.5 px-8 rounded-xl transition-all flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="bg-white dark:bg-[#15291b] border-2 border-[#e7f3eb] dark:border-[#1e3a27] text-[#5c7a67] dark:text-slate-300 font-black py-4 px-10 rounded-2xl text-[10px] uppercase tracking-[0.2em] hover:border-[#13ec5b] transition-all flex items-center gap-4"
               >
-                <span className="material-symbols-outlined">arrow_back</span>
-                Previous Step
+                <span className="material-symbols-outlined font-black">
+                  arrow_back
+                </span>
+                Previous Node
               </button>
               <button
                 onClick={handleNext}
-                className="bg-[linear-gradient(135deg,#4F46E5_0%,#7C3AED_100%)] hover:opacity-90 text-white font-bold py-3.5 px-8 rounded-xl transition-all flex items-center gap-3 shadow-lg shadow-[#5048e5]/20 active:scale-95"
+                className="bg-[#13ec5b] text-[#15291b] font-black py-4 px-12 rounded-2xl text-[10px] uppercase tracking-[0.2em] shadow-xl shadow-[#13ec5b]/20 hover:scale-105 active:scale-95 transition-all flex items-center gap-4"
               >
                 Next: Verification
-                <span className="material-symbols-outlined">arrow_forward</span>
+                <span className="material-symbols-outlined font-black">
+                  arrow_forward
+                </span>
               </button>
             </div>
           </div>
 
-          {/* --- Right Column: Sidebar Info --- */}
-          <aside className="col-span-12 lg:col-span-4 space-y-6">
-            {/* Teaching Tips */}
-            <div className="bg-white dark:bg-[#1a192e] rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
-                Teaching Tips
+          {/* --- Right Column: Sidebar Protocol --- */}
+          <aside className="col-span-12 lg:col-span-4 space-y-8">
+            <div className="bg-white dark:bg-[#15291b] rounded-[2.5rem] border border-[#e7f3eb] dark:border-[#1e3a27] p-8 space-y-10 shadow-sm">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+                Technical Briefing
               </h3>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="size-10 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-600 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined">
-                      tips_and_updates
-                    </span>
+              <div className="space-y-10">
+                {[
+                  {
+                    icon: "tips_and_updates",
+                    title: "Domain Density",
+                    desc: "Selecting 3+ core domains increases course resonance by 40%.",
+                  },
+                  {
+                    icon: "video_camera_front",
+                    title: "Sync engagement",
+                    desc: "Optimal engaged deployment ranges between 25-50 nodes.",
+                  },
+                  {
+                    icon: "forum",
+                    title: "Methodology Logic",
+                    desc: "Active-learning approach yields 2x higher synchronization rates.",
+                  },
+                ].map((tip) => (
+                  <div key={tip.title} className="flex gap-5 group">
+                    <div className="size-11 rounded-xl bg-[#13ec5b]/10 text-[#13ec5b] flex items-center justify-center shrink-0 border border-[#13ec5b]/20 group-hover:bg-[#13ec5b] group-hover:text-[#15291b] transition-all">
+                      <span className="material-symbols-outlined text-xl font-black">
+                        {tip.icon}
+                      </span>
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-xs font-black uppercase tracking-tight group-hover:text-[#13ec5b] transition-colors">
+                        {tip.title}
+                      </h4>
+                      <p className="text-[11px] font-medium text-[#5c7a67] dark:text-[#a0c4ab] leading-relaxed">
+                        {tip.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      Expertise Tags
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Select at least 3 core subjects to improve your course
-                      discoverability by 40%.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined">
-                      video_camera_front
-                    </span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      Live Session Capacity
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1">
-                      We recommend starting with 25-50 students for live
-                      sessions to ensure high engagement.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="size-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined">forum</span>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      Methodology Matters
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1">
-                      Instructors who describe active learning techniques see 2x
-                      higher enrollment rates.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="mt-8 p-4 bg-[#5048e5]/5 dark:bg-[#5048e5]/10 rounded-xl border border-[#5048e5]/10">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="material-symbols-outlined text-[#5048e5] text-sm">
+              <div className="mt-12 p-6 bg-[#13ec5b]/5 rounded-[1.5rem] border border-[#13ec5b]/10">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="material-symbols-outlined text-[#13ec5b] text-base font-black">
                     groups
                   </span>
-                  <span className="text-[10px] font-black uppercase text-slate-500 tracking-wider">
-                    Community Insights
+                  <span className="text-[10px] font-black uppercase text-[#5c7a67] tracking-widest">
+                    Community Sync
                   </span>
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Join our <span className="font-bold">Instructor Guild</span>{" "}
-                  to join monthly webinars on AI-enhanced pedagogy.
+                <p className="text-[11px] font-medium text-[#5c7a67] dark:text-[#a0c4ab] leading-relaxed">
+                  Join the{" "}
+                  <span className="text-[#13ec5b] font-black">
+                    Instructor Guild
+                  </span>{" "}
+                  to access advanced AI pedagogical assets.
                 </p>
-                <button className="mt-3 text-[#5048e5] text-xs font-bold hover:underline">
-                  View Guild Calendar
+                <button className="mt-4 text-[#13ec5b] text-[10px] font-black uppercase tracking-widest hover:underline">
+                  Join Network →
                 </button>
               </div>
             </div>
 
-            {/* Testimonial */}
-            <div className="bg-emerald-500/5 rounded-2xl border border-emerald-500/10 p-6 italic text-slate-600 dark:text-slate-400">
-              <p className="text-sm">
-                &quot;The availability grid makes scheduling live labs so much
-                easier. Students from across the globe know exactly when they
-                can reach me.&quot;
+            {/* Professional Validation */}
+            <div className="bg-[#15291b] dark:bg-[#13ec5b]/5 rounded-[2.5rem] border border-[#1e3a27] p-8 relative overflow-hidden group">
+              <div className="absolute -bottom-10 -left-10 size-40 bg-[#13ec5b] blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <p className="text-xs font-medium italic text-[#a0c4ab] leading-relaxed relative z-10">
+                "The Temporal Matrix allowed me to synchronize global office
+                hours across 14 timezones instantly. Pure logic."
               </p>
-              <div className="mt-4 flex items-center gap-3 not-italic">
-                <div
-                  className="size-8 rounded-full bg-slate-300 bg-cover bg-center"
-                  style={{
-                    backgroundImage:
-                      'url("https://ui-avatars.com/api/?name=Aris+Thorne&background=random")',
-                  }}
-                ></div>
+              <div className="mt-6 flex items-center gap-4 relative z-10">
+                <div className="size-10 rounded-xl bg-[#0a0f0b] border border-[#13ec5b]/30 overflow-hidden">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Aris+Thorne&background=15291b&color=13ec5b&bold=true"
+                    alt="Architect"
+                  />
+                </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-900 dark:text-white">
+                  <p className="text-[10px] font-black uppercase text-white tracking-tight">
                     Dr. Aris Thorne
                   </p>
-                  <p className="text-[10px] text-slate-500">
-                    Physics & Quantum Computing
+                  <p className="text-[8px] font-black uppercase text-[#13ec5b] tracking-widest">
+                    Quantum Logic Lead
                   </p>
                 </div>
               </div>
@@ -444,18 +419,17 @@ export default function InstructorRegistrationStep2() {
         </div>
       </main>
 
-      {/* --- Footer --- */}
-      <footer className="max-w-7xl mx-auto px-8 py-10 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-        <p>© 2023 EduLearn LMS Platform. All rights reserved.</p>
-        <div className="flex gap-6">
-          <Link href="#" className="hover:text-[#5048e5]">
-            Privacy Policy
+      {/* --- HUD Footer --- */}
+      <footer className="max-w-7xl mx-auto px-10 py-12 border-t border-[#e7f3eb] dark:border-[#1e3a27] flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#5c7a67]">
+          © {new Date().getFullYear()} EduDNA Neural Network • Protocol 3.12
+        </p>
+        <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest">
+          <Link href="#" className="hover:text-[#13ec5b] transition-colors">
+            Privacy Node
           </Link>
-          <Link href="#" className="hover:text-[#5048e5]">
-            Terms of Service
-          </Link>
-          <Link href="#" className="hover:text-[#5048e5]">
-            Instructor Agreement
+          <Link href="#" className="hover:text-[#13ec5b] transition-colors">
+            Legal Terms
           </Link>
         </div>
       </footer>
