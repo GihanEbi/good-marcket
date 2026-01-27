@@ -4,28 +4,37 @@ import React from "react";
 
 export default function ArticlesPage() {
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-earth-dark dark:text-[#f6f8f6] p-6 md:p-10">
-      {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10 py-4 -mt-4 -mx-6 px-6 md:-mx-10 md:px-10 border-b border-[#e7f3eb] dark:border-[#1a2e21]">
-        <div>
-          <h1 className="text-2xl font-extrabold text-earth-dark dark:text-white">
-            Articles
-          </h1>
-          <p className="text-xs text-earth-sage mt-1">
-            Manage and publish editorial content
-          </p>
+    <div className="min-h-screen bg-slate-50 dark:bg-[#020617] transition-colors duration-500 pb-12">
+      {/* Page Header - Glassmorphic Sticky */}
+      <div className="sticky top-0 z-20 bg-white/80 dark:bg-[#020617]/80 backdrop-blur-xl border-b border-slate-200 dark:border-white/5 px-6 md:px-10 py-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
+              <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                Editorial Hub
+              </h1>
+            </div>
+            <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+              Manage and publish regenerative commerce content
+            </p>
+          </div>
+          <button className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-2xl text-sm font-black shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all">
+            <span className="material-symbols-outlined text-xl">add_box</span>
+            NEW ARTICLE
+          </button>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 mt-10">
         {/* Filters Section */}
-        <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-earth-sage px-1">
+        <div className="mb-8 flex flex-col lg:flex-row items-end justify-between gap-6">
+          <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto">
+            <div className="flex flex-col gap-2 w-full md:w-auto">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 px-1">
                 Category
               </label>
-              <select className="bg-white dark:bg-[#15291b] border border-[#e7f3eb] dark:border-[#1a2e21] rounded-lg text-sm font-medium text-earth-dark dark:text-white px-4 py-2 min-w-[160px] focus:ring-primary focus:outline-none cursor-pointer">
+              <select className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 px-4 py-3 min-w-[200px] focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none cursor-pointer appearance-none shadow-sm transition-all">
                 <option>All Categories</option>
                 <option>Agriculture</option>
                 <option>Fashion</option>
@@ -34,11 +43,12 @@ export default function ArticlesPage() {
                 <option>Policy</option>
               </select>
             </div>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-earth-sage px-1">
-                Status
+
+            <div className="flex flex-col gap-2 w-full md:w-auto">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 px-1">
+                Publishing Status
               </label>
-              <select className="bg-white dark:bg-[#15291b] border border-[#e7f3eb] dark:border-[#1a2e21] rounded-lg text-sm font-medium text-earth-dark dark:text-white px-4 py-2 min-w-[140px] focus:ring-primary focus:outline-none cursor-pointer">
+              <select className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl text-sm font-bold text-slate-700 dark:text-slate-200 px-4 py-3 min-w-[160px] focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 outline-none cursor-pointer appearance-none shadow-sm transition-all">
                 <option>All Statuses</option>
                 <option>Published</option>
                 <option>Draft</option>
@@ -47,274 +57,161 @@ export default function ArticlesPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
-            {/* Moved 'Reset' here and you can place the 'Create' button here if needed later */}
-            <button className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-earth-sage hover:text-earth-dark dark:hover:text-white transition-colors">
-              <span className="material-symbols-outlined text-lg">
-                restart_alt
-              </span>
-              Reset Filters
-            </button>
-          </div>
+          <button className="flex items-center gap-2 px-4 py-2 text-xs font-black text-slate-400 hover:text-rose-500 transition-colors uppercase tracking-widest mb-1 group">
+            <span className="material-symbols-outlined text-lg group-hover:rotate-180 transition-transform duration-500">
+              restart_alt
+            </span>
+            Clear All Filters
+          </button>
         </div>
 
         {/* Table Container */}
-        <div className="bg-white dark:bg-[#15291b] rounded-xl border border-[#e7f3eb] dark:border-[#1a2e21] overflow-hidden shadow-sm">
+        <div className="bg-white dark:bg-slate-900/40 rounded-[2.5rem] border border-slate-200 dark:border-white/5 overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse whitespace-nowrap">
+            <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#f6f8f6] dark:bg-[#1a2e21] border-b border-[#e7f3eb] dark:border-[#263d2e]">
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider">
-                    Thumbnail
+                <tr className="bg-slate-50/50 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/5">
+                  <th className="px-8 py-5 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+                    Media
                   </th>
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider">
-                    Title
+                  <th className="px-8 py-5 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+                    Article Details
                   </th>
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider">
+                  <th className="px-8 py-5 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
                     Category
                   </th>
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider">
-                    Author
-                  </th>
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider">
-                    Published Date
-                  </th>
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider">
+                  <th className="px-8 py-5 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-xs font-bold text-earth-sage uppercase tracking-wider text-right">
+                  <th className="px-8 py-5 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] text-right">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#e7f3eb] dark:divide-[#263d2e]">
-                {/* Row 1 */}
-                <tr className="hover:bg-[#f8faf8] dark:hover:bg-[#1d3324] transition-colors">
-                  <td className="px-6 py-4">
-                    <div
-                      className="size-12 rounded bg-cover bg-center border border-[#e7f3eb] dark:border-[#263d2e]"
-                      style={{
-                        backgroundImage:
-                          'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXaBMFerDNKfbVcyhpRvu8Y2vjQgDU3QdgUG4K-ZQFJn3ydPA11aktDz--uOLev-zj3_kwzfucVEo_zQ_BVvkMZLabDbdBL3DxOke3w4CA2Ab8IY9J1xk2BuGUExz69FAWPwweJLlVfh2j58BkiyNwETBP31XXmp6lVH_yKGRT3f9LAFoTnves8KUdxte2kHuhX2syOz2w2pdpSQLjSXFcGO2R9gpSGdknG3PvyhIaHomMUrUhxtc7KLpnqStmMDut1UQ4wmGtDPg")',
-                      }}
-                    ></div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="font-bold text-sm text-earth-dark dark:text-white block max-w-xs truncate">
-                      Future of Regenerative Agriculture
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-earth-sage dark:text-[#a0c4ab]">
-                      Agriculture
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm font-medium text-earth-dark dark:text-white">
-                      Elena Woods
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-earth-sage">
-                      Oct 12, 2023
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider">
-                      <span className="size-1.5 rounded-full bg-primary"></span>
-                      Published
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-1">
-                      <button
-                        className="p-2 text-earth-sage hover:text-primary transition-colors"
-                        title="Preview"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          visibility
+              <tbody className="divide-y divide-slate-100 dark:divide-white/5">
+                {[
+                  {
+                    title: "Future of Regenerative Agriculture",
+                    cat: "Agriculture",
+                    author: "Elena Woods",
+                    date: "Oct 12, 2023",
+                    status: "Published",
+                    color: "emerald",
+                    img: "1",
+                  },
+                  {
+                    title: "Circular Policy Frameworks 2024",
+                    cat: "Policy",
+                    author: "Marcus Thorne",
+                    date: "—",
+                    status: "Review",
+                    color: "amber",
+                    img: "2",
+                  },
+                  {
+                    title: "The Impact of Sustainable Fashion",
+                    cat: "Fashion",
+                    author: "Sarah Jenkins",
+                    date: "—",
+                    status: "Draft",
+                    color: "slate",
+                    img: "3",
+                  },
+                ].map((row, idx) => (
+                  <tr
+                    key={idx}
+                    className="group hover:bg-slate-50/80 dark:hover:bg-white/[0.02] transition-all"
+                  >
+                    <td className="px-8 py-6">
+                      <div className="size-14 rounded-2xl bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-white/10 overflow-hidden group-hover:scale-105 transition-transform">
+                        <img
+                          src={`https://api.dicebear.com/7.x/shapes/svg?seed=${row.title}`}
+                          alt="thumb"
+                          className="size-full object-cover"
+                        />
+                      </div>
+                    </td>
+                    <td className="px-8 py-6">
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                          {row.title}
                         </span>
-                      </button>
-                      <button
-                        className="p-2 text-earth-sage hover:text-primary transition-colors"
-                        title="Edit"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          edit
+                        <span className="text-[11px] font-medium text-slate-400 mt-1 flex items-center gap-2">
+                          By{" "}
+                          <span className="text-slate-600 dark:text-slate-300">
+                            {row.author}
+                          </span>
+                          <span className="size-1 bg-slate-300 dark:bg-slate-700 rounded-full"></span>
+                          {row.date !== "—" ? row.date : "Not Set"}
                         </span>
-                      </button>
-                      <button
-                        className="p-2 text-earth-sage hover:text-red-500 transition-colors"
-                        title="Delete"
+                      </div>
+                    </td>
+                    <td className="px-8 py-6">
+                      <span className="text-xs font-bold text-slate-500 dark:text-slate-400 px-3 py-1 bg-slate-100 dark:bg-white/5 rounded-lg border border-transparent dark:border-white/5">
+                        {row.cat}
+                      </span>
+                    </td>
+                    <td className="px-8 py-6">
+                      <span
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border
+                        ${
+                          row.status === "Published"
+                            ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                            : row.status === "Review"
+                              ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                              : "bg-slate-500/10 text-slate-500 border-slate-500/20"
+                        }`}
                       >
-                        <span className="material-symbols-outlined text-xl">
-                          delete
-                        </span>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                {/* Row 2 */}
-                <tr className="hover:bg-[#f8faf8] dark:hover:bg-[#1d3324] transition-colors">
-                  <td className="px-6 py-4">
-                    <div
-                      className="size-12 rounded bg-cover bg-center border border-[#e7f3eb] dark:border-[#263d2e]"
-                      style={{
-                        backgroundImage:
-                          'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqSWDQKWy86cnTfjxKzAdTOdn39qv7auqpJtsrk2qvF8LCMGorhQjHM_l_tQ3wCZ_sKmrSyW0yyFOgwOgsvxtIknu4C8udsZpoXDYzvz9lzioTDFg1QJNcNf5Km5b3W0apqgvsxy8oMGdWr3ZlI274a-PExxiqOOncUeDClzDzVijKBEb-P6YQ6bi5NUZTyFLfnMN_AyYNrNRJAb4L7pY6TEfqNdPcntBLxEtmRgW9Ra1I22_RqBYg9eQUhKD3MzA2-XX10yfPziI")',
-                      }}
-                    ></div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="font-bold text-sm text-earth-dark dark:text-white block max-w-xs truncate">
-                      Circular Policy Frameworks 2024
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-earth-sage dark:text-[#a0c4ab]">
-                      Policy
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm font-medium text-earth-dark dark:text-white">
-                      Marcus Thorne
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-earth-sage">—</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#fef3c7] dark:bg-[#2d2514] text-[#d97706] text-[10px] font-bold uppercase tracking-wider">
-                      <span className="size-1.5 rounded-full bg-[#d97706]"></span>
-                      Review
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-1">
-                      <button
-                        className="p-2 text-earth-sage hover:text-primary transition-colors"
-                        title="Preview"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          visibility
-                        </span>
-                      </button>
-                      <button
-                        className="p-2 text-earth-sage hover:text-primary transition-colors"
-                        title="Edit"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          edit
-                        </span>
-                      </button>
-                      <button
-                        className="p-2 text-earth-sage hover:text-red-500 transition-colors"
-                        title="Delete"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          delete
-                        </span>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                {/* Row 3 */}
-                <tr className="hover:bg-[#f8faf8] dark:hover:bg-[#1d3324] transition-colors">
-                  <td className="px-6 py-4">
-                    <div
-                      className="size-12 rounded bg-cover bg-center border border-[#e7f3eb] dark:border-[#263d2e]"
-                      style={{
-                        backgroundImage:
-                          'url("https://lh3.googleusercontent.com/aida-public/AB6AXuD3VMGcNI4PhS2Oj67oo6aNqqdF6QQlz5cgeXATGz19Nd85vyuj9mr9p5JmYEALu9Uh33mSJUHA1iJ3wYs8a5n1xsQL4lA57Hc7Tym_AzS_Zr1b7O6asvayDB0FtdaiIZ2-kjD3WeWiLd0cOMybFvIjrGMN4LfAUGXLdD8ToRuqRdUuA2F4eJLIBU5y6Jgt7CDa_cxgj9CsZVuiseEPhBacXixJyaKjUFaGMx9VZ4kMmpmzYZCnF08LLeK5FzGFG3VHX9hZF5_-Sos")',
-                      }}
-                    ></div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="font-bold text-sm text-earth-dark dark:text-white block max-w-xs truncate">
-                      The Impact of Sustainable Fashion
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-earth-sage dark:text-[#a0c4ab]">
-                      Fashion
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm font-medium text-earth-dark dark:text-white">
-                      Sarah Jenkins
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="text-sm text-earth-sage">—</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#e7f3eb] dark:bg-[#1a2e21] text-earth-sage text-[10px] font-bold uppercase tracking-wider">
-                      <span className="size-1.5 rounded-full bg-earth-sage"></span>
-                      Draft
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-1">
-                      <button
-                        className="p-2 text-earth-sage hover:text-primary transition-colors"
-                        title="Preview"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          visibility
-                        </span>
-                      </button>
-                      <button
-                        className="p-2 text-earth-sage hover:text-primary transition-colors"
-                        title="Edit"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          edit
-                        </span>
-                      </button>
-                      <button
-                        className="p-2 text-earth-sage hover:text-red-500 transition-colors"
-                        title="Delete"
-                      >
-                        <span className="material-symbols-outlined text-xl">
-                          delete
-                        </span>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+                        <span
+                          className={`size-1.5 rounded-full ${row.status === "Published" ? "bg-emerald-500 animate-pulse" : "bg-current opacity-50"}`}
+                        ></span>
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="px-8 py-6 text-right">
+                      <div className="flex justify-end gap-1">
+                        <button className="size-10 rounded-xl hover:bg-emerald-500/10 text-slate-400 hover:text-emerald-500 transition-all">
+                          <span className="material-symbols-outlined text-xl">
+                            visibility
+                          </span>
+                        </button>
+                        <button className="size-10 rounded-xl hover:bg-cyan-500/10 text-slate-400 hover:text-cyan-500 transition-all">
+                          <span className="material-symbols-outlined text-xl">
+                            edit_square
+                          </span>
+                        </button>
+                        <button className="size-10 rounded-xl hover:bg-rose-500/10 text-slate-400 hover:text-rose-500 transition-all">
+                          <span className="material-symbols-outlined text-xl">
+                            delete_sweep
+                          </span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
 
-          {/* Pagination */}
-          <div className="px-6 py-5 border-t border-[#e7f3eb] dark:border-[#263d2e] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#fcfdfc] dark:bg-[#1a2e21]/50">
-            <span className="text-xs font-medium text-earth-sage">
+          {/* Pagination Wrapper */}
+          <div className="px-8 py-6 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6 bg-slate-50/30 dark:bg-white/[0.01]">
+            <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
               Showing{" "}
-              <span className="text-earth-dark dark:text-white">1 - 3</span> of{" "}
-              <span className="text-earth-dark dark:text-white">152</span>{" "}
-              articles
+              <span className="text-slate-900 dark:text-white">1 - 3</span> of
+              152 Articles
             </span>
             <div className="flex items-center gap-2">
-              <button className="size-8 flex items-center justify-center rounded border border-[#e7f3eb] dark:border-[#263d2e] text-earth-sage hover:bg-white dark:hover:bg-[#1d3324] transition-colors">
-                <span className="material-symbols-outlined text-lg">
-                  chevron_left
-                </span>
+              <button className="size-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-slate-400 hover:text-emerald-500 transition-all">
+                <span className="material-symbols-outlined">chevron_left</span>
               </button>
-              <button className="size-8 rounded bg-primary text-earth-dark text-xs font-bold shadow-sm shadow-primary/20">
+              <button className="size-10 rounded-xl bg-emerald-500 text-white text-xs font-black shadow-lg shadow-emerald-500/20">
                 1
               </button>
-              <button className="size-8 rounded border border-[#e7f3eb] dark:border-[#263d2e] text-xs font-bold hover:bg-white dark:hover:bg-[#1d3324] text-earth-sage transition-colors">
+              <button className="size-10 rounded-xl border border-slate-200 dark:border-white/10 text-slate-400 hover:text-emerald-500 text-xs font-black transition-all">
                 2
               </button>
-              <button className="size-8 rounded border border-[#e7f3eb] dark:border-[#263d2e] text-xs font-bold hover:bg-white dark:hover:bg-[#1d3324] text-earth-sage transition-colors">
-                3
-              </button>
-              <button className="size-8 flex items-center justify-center rounded border border-[#e7f3eb] dark:border-[#263d2e] text-earth-sage hover:bg-white dark:hover:bg-[#1d3324] transition-colors">
-                <span className="material-symbols-outlined text-lg">
-                  chevron_right
-                </span>
+              <button className="size-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-slate-400 hover:text-emerald-500 transition-all">
+                <span className="material-symbols-outlined">chevron_right</span>
               </button>
             </div>
           </div>

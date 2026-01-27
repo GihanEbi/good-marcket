@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -29,7 +30,7 @@ export default function BlogAdminSidebar({
     <>
       {/* Mobile Backdrop */}
       <div
-        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity lg:hidden ${
+        className={`fixed inset-0 z-40 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm transition-opacity lg:hidden ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={onClose}
@@ -37,18 +38,22 @@ export default function BlogAdminSidebar({
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white dark:bg-[#15291b] border-r border-border-light dark:border-border-dark flex flex-col transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 z-50 h-full w-72 
+          bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl
+          border-r border-slate-200 dark:border-white/10 
+          flex flex-col transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
+            isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
+          }`}
       >
         {/* Sidebar Header */}
-        <div className="p-6 border-b border-border-light dark:border-border-dark flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 text-primary">
-            <div className="size-8 shrink-0">
+        <div className="p-8 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 group">
+            {/* Logo with Dynamic Gradient */}
+            <div className="size-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:rotate-6 transition-transform">
               <svg
+                className="size-6 text-white"
                 fill="none"
                 viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   clipRule="evenodd"
@@ -58,58 +63,106 @@ export default function BlogAdminSidebar({
                 ></path>
               </svg>
             </div>
-            <span className="text-text-main dark:text-white text-lg font-extrabold tracking-tight">
-              Good Market
-            </span>
+            <div className="flex flex-col">
+              <span className="text-slate-900 dark:text-white text-lg font-black tracking-tight leading-none">
+                Good Market
+              </span>
+              <span className="text-emerald-600 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">
+                Admin Console
+              </span>
+            </div>
           </Link>
-          {/* Close button for Mobile */}
+
           <button
             onClick={onClose}
-            className="lg:hidden text-text-green hover:text-primary transition-colors"
+            className="lg:hidden text-slate-500 dark:text-slate-400 p-1"
           >
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 px-4 py-6 flex flex-col gap-1 overflow-y-auto">
+        <nav className="flex-1 px-4 py-4 flex flex-col gap-2 overflow-y-auto">
+          <p className="px-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.3em] mb-2">
+            Management
+          </p>
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={onClose} // Close sidebar on click (mobile UX)
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                onClick={onClose}
+                className={`group flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all duration-300 relative ${
                   isActive
-                    ? "bg-primary/10 text-text-main dark:text-white font-bold"
-                    : "text-text-green dark:text-text-green-light hover:bg-border-light dark:hover:bg-border-dark"
+                    ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                    : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
+                {/* Active Indicator Gaps */}
+                {isActive && (
+                  <div className="absolute left-0 top-3 bottom-3 w-1.5 bg-emerald-500 rounded-r-full shadow-[4px_0_12px_rgba(16,185,129,0.4)]" />
+                )}
+
                 <span
-                  className={`material-symbols-outlined ${
-                    isActive ? "text-primary" : ""
+                  className={`material-symbols-outlined text-2xl transition-all ${
+                    isActive
+                      ? "scale-110"
+                      : "opacity-70 group-hover:opacity-100"
                   }`}
                 >
                   {item.icon}
                 </span>
-                {item.name}
+                <span className="font-bold tracking-tight text-sm">
+                  {item.name}
+                </span>
               </Link>
             );
           })}
         </nav>
 
-        {/* Sidebar Footer (Logout Button) */}
-        <div className="p-4 border-t border-border-light dark:border-border-dark">
-          <Link
-            href="/"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-text-green dark:text-text-green-light hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 dark:hover:text-red-400 transition-all group"
-          >
-            <span className="material-symbols-outlined group-hover:text-red-600 dark:group-hover:text-red-400">
-              logout
-            </span>
-            <span className="font-medium">Logout</span>
-          </Link>
+        {/* Bottom Profile Card */}
+        <div className="p-4 mt-auto">
+          <div className="p-4 rounded-[2rem] bg-slate-100/50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 transition-colors">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="size-10 rounded-full border-2 border-emerald-500/30 p-0.5 shrink-0">
+                <div
+                  className="size-full rounded-full bg-slate-200 dark:bg-slate-800 bg-cover"
+                  style={{
+                    backgroundImage:
+                      'url("https://api.dicebear.com/7.x/avataaars/svg?seed=Admin")',
+                  }}
+                ></div>
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-sm font-bold text-slate-900 dark:text-white truncate">
+                  Master Admin
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[10px] font-bold text-slate-500 uppercase">
+                    Live
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              href="/admin/auth"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl 
+                bg-white dark:bg-slate-900 
+                text-slate-600 dark:text-slate-400 
+                hover:text-rose-600 dark:hover:text-rose-400 
+                border border-slate-200 dark:border-white/5
+                hover:border-rose-200 dark:hover:border-rose-500/20
+                shadow-sm hover:shadow-rose-500/10 transition-all font-bold text-xs group"
+            >
+              <span className="material-symbols-outlined text-lg group-hover:translate-x-0.5 transition-transform">
+                power_settings_new
+              </span>
+              Logout
+            </Link>
+          </div>
         </div>
       </aside>
     </>

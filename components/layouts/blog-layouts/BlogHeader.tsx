@@ -3,8 +3,10 @@
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function BlogHeader() {
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Prevent scrolling when menu is open
@@ -99,6 +101,9 @@ export default function BlogHeader() {
             style={{
               backgroundImage:
                 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBzANguBe4G0nAYHaKaWicaO_TtdVcxo2m5DPYrAmNcNZPhu5wRkn7eKX1xnUC4Dy47wE0ywUcgnwjkgfzk22pcxYDbGuZLK1TAyhQVeguYFyPGBTUIG2M404yWLtpUw9gp_YOgpMVR3QgLuKOTg924QXb_r0t-FPKFjSGF_qfc6QxY7utUwnp3TQI_3QgMTa8xLFI0AReXQNz_JKJSmyBvyI5CPi18LFs6v-HRqw1hf8i1ZaPVYfRZB74u0whVDgafTkNkzPl7w64")',
+            }}
+            onClick={() => {
+              router.push("/admin/auth");
             }}
           ></div>
 
@@ -201,7 +206,12 @@ export default function BlogHeader() {
           </button>
 
           {/* User Profile in Drawer */}
-          <div className="mt-auto flex items-center gap-3 p-4 rounded-xl bg-border-light dark:bg-border-dark/50">
+          <div
+            className="mt-auto flex items-center gap-3 p-4 rounded-xl bg-border-light dark:bg-border-dark/50"
+            onClick={() => {
+              router.push("/admin/auth");
+            }}
+          >
             <div
               className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20"
               style={{
