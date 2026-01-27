@@ -3,6 +3,7 @@
 import React from "react";
 import { Manrope } from "next/font/google";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ const dashboardItems = [
     description:
       "Oversee educational courses, certification programs, and regenerative economy curriculum.",
     action: "Manage LMS",
-    path: "/admin/lms-admin/dashboard",
+    path: "/admin/lerning-admin/dashboard",
   },
   {
     title: "Ethical Marketplace",
@@ -163,8 +164,9 @@ export default function MasterAdminPortal() {
               key={index}
               className="group relative bg-white dark:bg-slate-900/40 backdrop-blur-sm p-8 rounded-[2.5rem] border border-slate-200 dark:border-white/5 hover:border-emerald-500/30 transition-all duration-500 flex flex-col h-full hover:-translate-y-2 overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none"
             >
+              {/* FIXED: Added pointer-events-none to prevent blocking clicks */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`}
+                className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none`}
               ></div>
 
               <div
@@ -186,16 +188,17 @@ export default function MasterAdminPortal() {
                 {item.description}
               </p>
 
-              <div className="mt-auto">
-                <button
+              {/* FIXED: Added relative z-10 to ensure the button layer is on top */}
+              <div className="mt-auto relative z-10">
+                <Link
+                  href={item.path}
                   className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-all duration-300 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white group-hover:bg-gradient-to-r ${item.color} group-hover:text-white group-hover:shadow-lg`}
-                  onClick={() => router.push(item.path)}
                 >
                   {item.action}
                   <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">
                     arrow_right_alt
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
           ))}
