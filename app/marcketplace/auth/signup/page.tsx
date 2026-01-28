@@ -4,225 +4,308 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function SignUpPage() {
+export default function JoinMovementPage() {
   const router = useRouter();
-  const [role, setRole] = useState<"student" | "instructor">("student");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Add your registration API logic here (e.g., create user in DB)
-    console.log(`Registering as ${role}`);
-
+  const [selectedRole, setSelectedRole] = useState<"farmer" | "vendor">(
+    "farmer",
+  );
+  const handleSubmit = () => {
     // Conditional Routing based on Role
-    if (role === "student") {
+    if (selectedRole === "vendor") {
       router.push(
-        "/learning/users/student/registration/profile-registration/profile-info",
-      );
-    } else {
-      router.push(
-        "/learning/users/instructor/registration/profile-registration/personal_info",
+        "/marcketplace/vendor/registration/basic-info",
       );
     }
   };
 
   return (
-    // 1. Outer Wrapper: Full screen background, centers the content
-    <div className="min-h-screen w-full flex items-center justify-center bg-background-light dark:bg-background-dark p-4 lg:p-8 font-display">
-      {/* 2. The Card: Fixed max-width, rounded corners, shadow */}
-      <div className="w-full max-w-6xl bg-white dark:bg-[#15291b] rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row min-h-[700px] border border-[#e7f3eb] dark:border-[#1a2e21]">
-        {/* --- Left Side: Hero Section --- */}
-        <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center px-12 py-12 text-white overflow-hidden bg-[#0d1b12]">
-          {/* Background Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0d1b12] to-[#1a2e21] opacity-90"></div>
+    // 1. Outer Page Wrapper: Centers the card
+    <div className="min-h-screen flex items-center justify-center p-4 lg:p-8 bg-slate-50 dark:bg-[#020617] font-sans text-slate-900 dark:text-white transition-colors duration-500">
+      {/* 2. The Card Container */}
+      <div className="w-full max-w-7xl bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row min-h-[750px] border border-slate-200 dark:border-white/5">
+        {/* Left Column: Hero Image (Hidden on Mobile) */}
+        <div className="hidden lg:flex lg:w-5/12 relative overflow-hidden bg-slate-900">
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center opacity-60 mix-blend-overlay transition-transform duration-1000 hover:scale-105"
+            style={{
+              backgroundImage:
+                'url("https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2813&auto=format&fit=crop")',
+            }}
+          ></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
 
-          {/* Floating Icons */}
-          <span className="material-symbols-outlined absolute text-[80px] text-earth-sage/10 top-10 left-10 select-none">
-            school
-          </span>
-          <span className="material-symbols-outlined absolute text-[100px] text-earth-sage/10 bottom-10 right-10 select-none">
-            menu_book
-          </span>
-          <span className="material-symbols-outlined absolute text-[60px] text-earth-sage/10 top-1/2 right-10 select-none">
-            lightbulb
-          </span>
-
-          <div className="relative z-10">
-            {/* Logo area */}
-            <div className="flex items-center gap-3 mb-10">
-              <div className="bg-primary/20 rounded-lg p-2 text-primary shadow-lg border border-primary/20">
-                <span className="material-symbols-outlined text-3xl">
-                  auto_stories
+          <div className="relative z-10 flex flex-col justify-end p-12 xl:p-16 w-full h-full">
+            <div className="mb-auto">
+              <div className="flex items-center gap-2 opacity-50">
+                <span className="material-symbols-outlined text-white text-xl">
+                  eco
+                </span>
+                <span className="text-white font-bold tracking-widest text-xs uppercase">
+                  Good Market
                 </span>
               </div>
-              <span className="text-2xl font-extrabold tracking-tight text-white">
-                Good Market LMS
-              </span>
             </div>
 
-            <h1 className="text-4xl xl:text-5xl font-black leading-tight mb-6 text-[#f6f8f6]">
-              Master your future with sustainable learning
-            </h1>
-
-            <p className="text-lg text-[#a0c4ab] max-w-md mb-10">
-              Join thousands of students and instructors in the most
-              eco-conscious learning community. Accelerate your impact with
-              personalized paths.
-            </p>
-
-            {/* Social Proof */}
-            <div className="flex items-center gap-4">
-              <div className="flex -space-x-4">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="size-10 rounded-full border-2 border-primary bg-[#e7f3eb] overflow-hidden relative"
-                  >
-                    <img
-                      src={`https://ui-avatars.com/api/?name=User+${i}&background=random`}
-                      alt="user"
-                      className="object-cover w-full h-full opacity-80"
-                    />
-                  </div>
-                ))}
+            <div className="mb-8">
+              <div className="size-12 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-emerald-500/20 mb-6">
+                <svg
+                  className="size-7 text-white"
+                  fill="none"
+                  viewBox="0 0 48 48"
+                >
+                  <path
+                    clipRule="evenodd"
+                    d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
+                    fill="currentColor"
+                    fillRule="evenodd"
+                  ></path>
+                </svg>
               </div>
-              <span className="text-sm font-bold text-[#a0c4ab]">
-                Join 50k+ active learners
+              <h1 className="text-4xl xl:text-5xl font-black text-white leading-[1.1] mb-4 tracking-tight">
+                Join the <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+                  Good Market
+                </span>{" "}
+                Movement
+              </h1>
+              <p className="text-lg text-slate-300 font-medium leading-relaxed max-w-sm">
+                Start your journey towards a more sustainable and ethical future
+                today.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4 text-slate-400 text-xs font-bold uppercase tracking-wider">
+              <span className="flex items-center gap-3">
+                <div className="p-1.5 rounded-full bg-emerald-500/20 text-emerald-400">
+                  <span className="material-symbols-outlined text-sm font-bold block">
+                    public
+                  </span>
+                </div>
+                Global Impact
+              </span>
+              <span className="flex items-center gap-3">
+                <div className="p-1.5 rounded-full bg-emerald-500/20 text-emerald-400">
+                  <span className="material-symbols-outlined text-sm font-bold block">
+                    volunteer_activism
+                  </span>
+                </div>
+                Community Driven
               </span>
             </div>
           </div>
         </div>
 
-        {/* --- Right Side: Form Section --- */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 py-12 md:px-16 xl:px-20 bg-white dark:bg-[#15291b]">
-          <div className="flex flex-col gap-2 mb-8">
-            <h2 className="text-earth-dark dark:text-white text-3xl font-black tracking-tight">
-              Create an Account
-            </h2>
-            <p className="text-earth-sage">
-              Already have an account?{" "}
-              <Link
-                href="/learning/auth/signin"
-                className="text-earth-dark dark:text-white font-bold hover:text-primary transition-colors underline decoration-2 decoration-primary/30 hover:decoration-primary"
+        {/* Right Column: Join Form */}
+        <div className="flex-1 flex flex-col justify-center p-8 md:p-12 lg:p-16 relative">
+          {/* Mobile Header Logo */}
+          <div className="lg:hidden flex items-center gap-2 mb-8">
+            <div className="size-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center">
+              <svg
+                className="size-5 text-white"
+                fill="none"
+                viewBox="0 0 48 48"
               >
-                Log in
-              </Link>
-            </p>
+                <path
+                  clipRule="evenodd"
+                  d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
+                  fill="currentColor"
+                  fillRule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <span className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+              Good Market
+            </span>
           </div>
 
-          {/* Role Selection */}
-          <div className="mb-8">
-            <h3 className="text-earth-dark dark:text-white text-sm font-bold uppercase tracking-wider mb-4">
-              I am a...
-            </h3>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setRole("student")}
-                type="button"
-                className={`flex-1 flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all ${
-                  role === "student"
-                    ? "border-primary bg-primary/10"
-                    : "border-[#e7f3eb] dark:border-[#263d2e] bg-white dark:bg-[#1a2e21] hover:border-primary/50"
-                }`}
-              >
-                <span
-                  className={`material-symbols-outlined ${role === "student" ? "text-primary" : "text-earth-sage"}`}
-                >
-                  person
-                </span>
-                <span className="text-sm font-bold text-earth-dark dark:text-white">
-                  Student
-                </span>
-              </button>
-
-              <button
-                onClick={() => setRole("instructor")}
-                type="button"
-                className={`flex-1 flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all ${
-                  role === "instructor"
-                    ? "border-primary bg-primary/10"
-                    : "border-[#e7f3eb] dark:border-[#263d2e] bg-white dark:bg-[#1a2e21] hover:border-primary/50"
-                }`}
-              >
-                <span
-                  className={`material-symbols-outlined ${role === "instructor" ? "text-primary" : "text-earth-sage"}`}
-                >
-                  co_present
-                </span>
-                <span className="text-sm font-bold text-earth-dark dark:text-white">
-                  Instructor
-                </span>
-              </button>
-            </div>
-          </div>
-
-          {/* Form */}
-          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-bold text-earth-dark dark:text-white">
-                Full Name
-              </label>
-              <input
-                className="w-full rounded-lg border border-[#e7f3eb] dark:border-[#263d2e] bg-[#fcfdfc] dark:bg-[#1a2e21] px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none text-earth-dark dark:text-white transition-all placeholder-earth-sage/50"
-                placeholder="Enter your full name"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-bold text-earth-dark dark:text-white">
-                Email Address
-              </label>
-              <input
-                className="w-full rounded-lg border border-[#e7f3eb] dark:border-[#263d2e] bg-[#fcfdfc] dark:bg-[#1a2e21] px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none text-earth-dark dark:text-white transition-all placeholder-earth-sage/50"
-                placeholder="example@goodmarket.org"
-                type="email"
-                required
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-bold text-earth-dark dark:text-white">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  className="w-full rounded-lg border border-[#e7f3eb] dark:border-[#263d2e] bg-[#fcfdfc] dark:bg-[#1a2e21] px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none text-earth-dark dark:text-white transition-all placeholder-earth-sage/50"
-                  placeholder="Create a strong password"
-                  type="password"
-                  required
-                />
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-earth-sage hover:text-earth-dark dark:hover:text-white transition-colors"
-                >
-                  <span className="material-symbols-outlined text-[20px]">
-                    visibility
-                  </span>
-                </button>
-              </div>
-              {/* Strength Indicator */}
-              <div className="mt-2 flex gap-1 h-1.5 w-full">
-                <div className="flex-1 bg-primary rounded-full"></div>
-                <div className="flex-1 bg-primary rounded-full"></div>
-                <div className="flex-1 bg-primary rounded-full"></div>
-                <div className="flex-1 bg-[#e7f3eb] dark:bg-[#263d2e] rounded-full"></div>
-              </div>
-              <p className="text-[11px] text-earth-sage font-medium">
-                Strength: <span className="text-primary font-bold">Strong</span>
+          <div className="w-full max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-black mb-3 text-slate-900 dark:text-white tracking-tight">
+                Create Account
+              </h2>
+              <p className="text-slate-500 dark:text-slate-400 font-medium max-w-md mx-auto">
+                Select how you&apos;d like to contribute to the ethical
+                marketplace ecosystem.
               </p>
             </div>
 
-            <button
-              className="w-full bg-primary text-earth-dark rounded-lg px-6 py-4 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:bg-[#0fd650] hover:scale-[1.01] active:scale-[0.99] transition-all mt-2"
-              type="submit"
-            >
-              Create Account
-            </button>
-          </form>
+            {/* Selection Cards */}
+            <div className="grid md:grid-cols-2 gap-6 mb-10">
+              {/* Farmer Option */}
+              <div
+                onClick={() => setSelectedRole("farmer")}
+                className={`p-6 md:p-8 rounded-[2rem] border-2 cursor-pointer transition-all relative overflow-hidden group ${
+                  selectedRole === "farmer"
+                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-500/10 ring-1 ring-emerald-500"
+                    : "border-slate-200 dark:border-white/10 hover:border-emerald-500/50 bg-white dark:bg-slate-900/50"
+                }`}
+              >
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div
+                    className={`size-16 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 ${
+                      selectedRole === "farmer"
+                        ? "bg-emerald-500 text-white shadow-xl shadow-emerald-500/30"
+                        : "bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-400"
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-4xl">
+                      potted_plant
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black mb-2 text-slate-900 dark:text-white">
+                    Join as a Farmer
+                  </h3>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                    For producers focusing on natural agriculture and
+                    regenerative farming.
+                  </p>
+                  <ul className="space-y-2 text-left w-full pl-2">
+                    {[
+                      "Traceability Tools",
+                      "Soil Health Resources",
+                      "Direct Sales",
+                    ].map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2.5 text-slate-700 dark:text-slate-300 text-xs font-bold"
+                      >
+                        <span className="material-symbols-outlined text-emerald-500 text-sm mt-0.5">
+                          check_circle
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {selectedRole === "farmer" && (
+                  <div className="absolute top-5 right-5 text-emerald-500 animate-in fade-in zoom-in duration-300">
+                    <span className="material-symbols-outlined text-2xl">
+                      verified
+                    </span>
+                  </div>
+                )}
+              </div>
 
-          <div className="mt-auto pt-8 text-center text-earth-sage text-xs font-medium">
-            © 2024 Good Market LMS. All rights reserved.
+              {/* Vendor Option */}
+              <div
+                onClick={() => setSelectedRole("vendor")}
+                className={`p-6 md:p-8 rounded-[2rem] border-2 cursor-pointer transition-all relative overflow-hidden group ${
+                  selectedRole === "vendor"
+                    ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-500/10 ring-1 ring-emerald-500"
+                    : "border-slate-200 dark:border-white/10 hover:border-emerald-500/50 bg-white dark:bg-slate-900/50"
+                }`}
+              >
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div
+                    className={`size-16 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 ${
+                      selectedRole === "vendor"
+                        ? "bg-emerald-500 text-white shadow-xl shadow-emerald-500/30"
+                        : "bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-slate-400"
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-4xl">
+                      storefront
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black mb-2 text-slate-900 dark:text-white">
+                    Join as a Vendor
+                  </h3>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                    For ethical makers and brands committed to people and
+                    planet.
+                  </p>
+                  <ul className="space-y-2 text-left w-full pl-2">
+                    {[
+                      "Marketplace Access",
+                      "Community Endorsements",
+                      "Circular Support",
+                    ].map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2.5 text-slate-700 dark:text-slate-300 text-xs font-bold"
+                      >
+                        <span className="material-symbols-outlined text-emerald-500 text-sm mt-0.5">
+                          check_circle
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {selectedRole === "vendor" && (
+                  <div className="absolute top-5 right-5 text-emerald-500 animate-in fade-in zoom-in duration-300">
+                    <span className="material-symbols-outlined text-2xl">
+                      verified
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center gap-6">
+              <button
+                className="w-full md:w-80 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-2xl font-black text-sm shadow-xl shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                Sign Up
+                <span className="material-symbols-outlined text-lg">
+                  arrow_forward
+                </span>
+              </button>
+              <p className="text-[10px] text-slate-400 font-medium text-center max-w-sm leading-relaxed">
+                By clicking "Sign Up", you agree to our{" "}
+                <Link
+                  href="#"
+                  className="text-emerald-500 font-bold hover:underline hover:text-emerald-600"
+                >
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="#"
+                  className="text-emerald-500 font-bold hover:underline hover:text-emerald-600"
+                >
+                  Ethical Standards
+                </Link>
+                .
+              </p>
+            </div>
+
+            <div className="mt-8 text-center border-t border-slate-100 dark:border-white/5 pt-6">
+              <p className="text-xs text-slate-500 font-medium">
+                Already have an account?
+                <Link
+                  href="/marcketplace/auth/signin"
+                  className="text-emerald-500 font-black hover:underline hover:text-emerald-600 ml-1 transition-colors uppercase tracking-wide text-[10px]"
+                >
+                  Log In
+                </Link>
+              </p>
+            </div>
+
+            <footer className="mt-8 flex flex-wrap justify-center gap-6 text-[10px] text-slate-400 font-black uppercase tracking-widest">
+              <Link
+                href="#"
+                className="hover:text-emerald-500 transition-colors"
+              >
+                Privacy
+              </Link>
+              <Link
+                href="#"
+                className="hover:text-emerald-500 transition-colors"
+              >
+                Terms
+              </Link>
+              <Link
+                href="#"
+                className="hover:text-emerald-500 transition-colors"
+              >
+                Help
+              </Link>
+              <span>© 2024 Good Market</span>
+            </footer>
           </div>
         </div>
       </div>

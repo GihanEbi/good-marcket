@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -67,7 +69,7 @@ export default function MarketplaceHeader() {
                 key={icon}
                 className="flex items-center justify-center rounded-lg h-10 w-10 bg-border-light dark:bg-border-dark text-[#0d1b12] dark:text-white hover:bg-primary/20 transition-all"
                 onClick={() => {
-                  router.push(`/${icon === "shopping_cart" ? "marcketplace/cart" : icon === "favorite" ? "marcketplace/wishlist" : "admin/auth"}`);
+                  router.push(`/${icon === "shopping_cart" ? "marcketplace/cart" : icon === "favorite" ? "marcketplace/wishlist" : "marcketplace/auth/signin" }`);
                 }}
               >
                 <span className="material-symbols-outlined">{icon}</span>
